@@ -1,0 +1,108 @@
+body, html {
+  background-color: #f4f4f4;
+}
+
+body {
+  color: #52585D;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.feature {
+  background-color: white;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  margin-top: 60px;
+}
+
+a {
+  color: #2D81C5;
+  text-decoration: none;
+}
+
+h1 {
+  color: #222;
+  font-family: "agb", Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-shadow: #aaaaaa 1px 1px 1px;
+  font-weight: normal;
+  font-size: 32px;
+  margin-top: 32px;
+}
+
+h2 {
+  color: #42484D;
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.description {
+  text-align: left;
+}
+
+#notices {
+  color: #40449B;
+  text-align: center;
+  min-height: 18px;
+}
+
+form {
+    text-align: center;
+    margin-top: 9px;
+}
+
+.signup-terms, #footer {
+  margin-bottom: 16px;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.signup-terms {
+  color: #7a7a7a;
+  font-style: italic;
+}
+
+.signup-terms a {
+  color: #2D81C5;
+}
+
+.bottom-nav {
+  margin-top: 16px;
+  color: #828A91;
+}
+
+form input {
+  border: 1px solid #aaaaaa;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: Georgia, serif;
+}
+
+form input#email {
+  margin-bottom: 0;
+}
+
+form input[type=submit] {
+  border: 1px solid #c5250f;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ef4832), color-stop(100%, #c5250f));
+  background-image: -moz-linear-gradient(top, #ef4832 0%, #c5250f 100%);
+  background-image: linear-gradient(top, #299a0b 0%, #299a0b 100%);
+  text-shadow: #999999 0px -1px 1px;
+  color: white;
+}
+
+form input[type=submit]:active {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c5250f), color-stop(100%, #7e170a));
+  background-image: -moz-linear-gradient(top, #c5250f 0%, #7e170a 100%);
+  background-image: linear-gradient(top, #c5250f 0%, #7e170a 100%);
+}
+
+form .placeholder {
+  color: #888;
+}
