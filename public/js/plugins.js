@@ -12,3 +12,12 @@ if (!(window.console && console.log)) {
 }
 
 // Place any jQuery/helper plugins in here.
+
+function getNearest(a, n){
+	if((l = a.length) < 2)
+		return l - 1;
+	for(var l, p = Math.abs(a[--l] - n); l--;)
+		if(p < (p = Math.abs(a[l] - n)))
+			break;
+	return l + 1;
+}
