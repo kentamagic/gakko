@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'hominid' # MailChimp
+require 'haml'
 
 configure do
 
@@ -11,7 +12,7 @@ configure do
 end
 
 get '/' do
-  erb :index
+  haml :index
 end
 
 post '/signup' do
