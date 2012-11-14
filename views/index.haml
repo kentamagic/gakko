@@ -9,21 +9,21 @@
   %script{:src => "/js/vendor/modernizr-2.6.2.min.js"}
 
 %body
-  .container
-    .row
-      .span8.offset2.feature
-        %h1 Gakko 2013
-        .row
-          .span6.offset1.description
-            %p Sign up for our email list.
-        #notices
-          #success{:style => "display: none;"} Success! You're on the list.
-          #error{:style => "display: none;"} Sorry, we couldn't validate your email. Try again?
-        %form{:action => "/signup"}
-          %input#email{:name => "email", :type => "text", :placeholder => "Email me about the project"}
-          %input{:type => "submit", :value => "Subscribe"}
-    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", :type => "text/javascript"}
-    %script{:src => "/js/vendor/bootstrap.min.js", :type => "text/javascript"}
-    %script{:src => "/js/vendor/jquery.backstretch.min.js", :type => "text/javascript"}
-    %script{:src => "/js/plugins.js", :type => "text/javascript"}
-    %script{:src => "/js/main.js", :type => "text/javascript"}
+  %header
+    %hgroup
+      %img{:src => "img/logo.png"}
+    #mc_embed_signup
+      %form.validate{:action => "/signup"}
+        #success{:style => "display:none"} Thank you!  You're on the list.
+        %input#mce-EMAIL.required.email{:type => "email", :value => "", :name => "EMAIL", :placeholder => "Enter your email for Gakko 2013 updates!"}
+        #mce-responses.clear
+          .response#mce-error-response{:style => "display: none;"}
+          .response#mce-success-response{:style => "display: none;"}
+        .clear
+        %button#mc-embedded-subscribe.submit-button{:type => "submit", :value => "Subscribe", :name => "subscribe"}
+          %span.hide-text Submit
+  %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", :type => "text/javascript"}
+  %script{:src => "/js/vendor/bootstrap.min.js", :type => "text/javascript"}
+  %script{:src => "/js/vendor/jquery.backstretch.min.js", :type => "text/javascript"}
+  %script{:src => "/js/plugins.js", :type => "text/javascript"}
+  %script{:src => "/js/main.js", :type => "text/javascript"}
