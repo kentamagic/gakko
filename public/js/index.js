@@ -63,6 +63,6 @@ $(document).ready(function() {
   });
   
   $('form input').focus(function() {
-    $('.submit-button').css('background', "#ffc600 url('../img/right.png') center no-repeat");
+    $('.submit-button').css('background', "#9e8f88 url('../img/right.png') center no-repeat");
   });
 });
