@@ -1,108 +1,147 @@
-body, html {
-  background-color: #f4f4f4;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 body {
-  color: #52585D;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  text-align: center;
-  font-size: 12px;
-  line-height: 18px;
+  border-top: 10px #ffc600 solid;
+  background-color: #635448;
+  color: #fff;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 }
 
-.feature {
-  background-color: white;
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  margin-top: 60px;
-}
-
-a {
-  color: #2D81C5;
-  text-decoration: none;
-}
-
-h1 {
-  color: #222;
-  font-family: "agb", Helvetica Neue, Helvetica, Arial, sans-serif;
-  text-shadow: #aaaaaa 1px 1px 1px;
-  font-weight: normal;
-  font-size: 32px;
-  margin-top: 32px;
-}
-
-h2 {
-  color: #42484D;
-  font-weight: normal;
-  font-size: 16px;
-  margin-top: 16px;
-}
-
-.description {
-  text-align: left;
-}
-
-#notices {
-  color: #40449B;
-  text-align: center;
-  min-height: 18px;
+header {
+  left: 50%;
+  top: 50%;
+  width: 440px;
+  margin-top: -100px;
+  margin-left: -220px;
+  overflow: hidden;
+  position: absolute;
 }
 
 form {
-    text-align: center;
-    margin-top: 9px;
+  float: left;
+  width: 420px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0px 1px 2px 2px rgba(0, 0, 0, .3);
+  box-shadow: inset 0px 1px 2px 2px rgba(0, 0, 0, .3);
 }
 
-.signup-terms, #footer {
-  margin-bottom: 16px;
-  font-size: 10px;
-  line-height: 14px;
-}
-
-.signup-terms {
-  color: #7a7a7a;
-  font-style: italic;
-}
-
-.signup-terms a {
-  color: #2D81C5;
-}
-
-.bottom-nav {
-  margin-top: 16px;
-  color: #828A91;
-}
-
-form input {
-  border: 1px solid #aaaaaa;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
+input, textarea {  
+  float: left;
+  padding: 10px 10px 10px 20px;  
+  border: none;
   -webkit-border-radius: 3px;
-  padding: 5px;
-  font-size: 14px;
-  font-family: Georgia, serif;
+  border-radius: 3px;
+  outline: 0;  
+  width: 328px;
+  height: 20px;  
+  background: #FFFFFF;
+  font-size: 16px;
+  color: #9e9f9f;
 }
 
-form input#email {
-  margin-bottom: 0;
+.submit-button {
+  float: left;
+  margin-left: 10px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  width: 50px;
+  height: 40px;
+  background: #ffc600 url('../images/right.png') center no-repeat; 
+  border: none;
 }
 
-form input[type=submit] {
-  border: 1px solid #c5250f;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ef4832), color-stop(100%, #c5250f));
-  background-image: -moz-linear-gradient(top, #ef4832 0%, #c5250f 100%);
-  background-image: linear-gradient(top, #299a0b 0%, #299a0b 100%);
-  text-shadow: #999999 0px -1px 1px;
-  color: white;
+.submit-button:hover {
+  background-color: #FFE70D;
 }
 
-form input[type=submit]:active {
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c5250f), color-stop(100%, #7e170a));
-  background-image: -moz-linear-gradient(top, #c5250f 0%, #7e170a 100%);
-  background-image: linear-gradient(top, #c5250f 0%, #7e170a 100%);
+.submit-button:active {
+  background-color: #EFB000;
 }
 
-form .placeholder {
-  color: #888;
+#success {
+  float: left;
+  padding: 11px 10px 9px 20px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  outline: 0;
+  width: 328px;
+  height: 20px;
+  font-size: 16px;
+  color: #9e9f9f;
+  font-weight: normal;
+  background: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  line-height: 16px;
+}
+
+.hide-text {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+img {
+  margin: auto;
+}
+
+h2 {
+  font-family: 'Viga', sans-serif;
+  text-align: center;
+  font-size: 1.5em;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1.5em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
 }
