@@ -48,8 +48,7 @@ table {
 }
 
 body {
-  border-top: 10px #ffc600 solid;
-  background-color: #635448;
+  background-color: #eadfd9;
   color: #fff;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
@@ -96,16 +95,16 @@ input, textarea {
   border-radius: 3px;
   width: 50px;
   height: 40px;
-  background: #ffc600 url('../images/right.png') center no-repeat; 
+  background: #9e8f88 url('../img/right.png') center no-repeat; 
   border: none;
 }
 
 .submit-button:hover {
-  background-color: #FFE70D;
+  background-color: #b9aaa4;
 }
 
 .submit-button:active {
-  background-color: #EFB000;
+  background-color: #9e8f88;
 }
 
 #success {

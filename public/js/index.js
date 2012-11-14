@@ -31,6 +31,16 @@ $(document).ready(function() {
       
       }
 
+      $("#logo")
+        .mouseover(function() { 
+            var src = $(this).attr("src").match(/[^\.]+/) + "hover.png";
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = $(this).attr("src").replace("hover.png", ".png");
+            $(this).attr("src", src);
+        });
+
  $("form").submit(function(e) {
     $("#mce-responses").hide();
     e.preventDefault();
@@ -42,12 +52,12 @@ $(document).ready(function() {
       $.post("/signup", {email: emailAddress}, function() {
         $("#success").show();
         $("form input").hide();
-        $('.submit-button').css('background', "#00c277 url('../img/success.png') center no-repeat");
+        $('.submit-button').css('background', "#26b78c url('../img/success.png') center no-repeat");
       })
       .error(function() {
         $("form input").attr('placeholder', 'Please try again...');
         $("form input#mce-EMAIL").val('');
-        $('.submit-button').css('background', "#ff0030 url('../img/error.png') center no-repeat");
+        $('.submit-button').css('background', "#a51d21 url('../img/error.png') center no-repeat");
       });
     }
   });
