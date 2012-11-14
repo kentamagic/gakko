@@ -31,20 +31,28 @@ $(document).ready(function() {
       
       }
 
-  $("form").submit(function(e) {
-    $("#notices div").hide();
+ $("form").submit(function(e) {
+    $("#mce-responses").hide();
     e.preventDefault();
 
-    if ($("form input#email").val() === "") {
-      $("#notices #error").show();
+    if ($("form input#mce-EMAIL").val() === "") {
+      $("#mce-error-response").show();
     } else {
-      $.post("/signup", $(this).serialize(), function() {
-        $("#notices #success").show();
-        $("form input#email").val("");
+      var emailAddress = $("form input#mce-EMAIL").val();
+      $.post("/signup", {email: emailAddress}, function() {
+        $("#success").show();
+        $("form input").hide();
+        $('.submit-button').css('background', "#00c277 url('../img/success.png') center no-repeat");
       })
       .error(function() {
-        $("#notices #error").show();
+        $("form input").attr('placeholder', 'Please try again...');
+        $("form input#mce-EMAIL").val('');
+        $('.submit-button').css('background', "#ff0030 url('../img/error.png') center no-repeat");
       });
     }
+  });
+  
+  $('form input').focus(function() {
+    $('.submit-button').css('background', "#ffc600 url('../img/right.png') center no-repeat");
   });
 });
