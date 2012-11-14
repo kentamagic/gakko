@@ -1,7 +1,8 @@
 $(document).ready(function() {
-  var w = $(window).width();
+
+      var w = $(window).width();
       var backgroundList = [ 900, 1280, 1600, 2000 ];
-      b = "img/background"+backgroundList[getNearest(backgroundList, w)]+".jpg";
+      b = "images/background"+backgroundList[getNearest(backgroundList, w)]+".jpg";
       $.backstretch(b, {speed: 500});
 
       if(!Modernizr.input.placeholder){
@@ -27,6 +28,8 @@ $(document).ready(function() {
           }
           })
         });
+      
+      }
 
   $("form").submit(function(e) {
     $("#notices div").hide();
