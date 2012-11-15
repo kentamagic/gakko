@@ -3,10 +3,11 @@ function backstretchPages() {
 	var backgroundList = [ 900, 1280, 1600, 2000 ];
 	var size = backgroundList[getNearest(backgroundList, w)];
 	b = "img/background"+size+".jpg";
-	c = "img/background"+size+".jpg";
+	t = "img/team"+size+".jpg";
+	a = "img/about"+size+".jpg";
 	$.backstretch(b, {speed: 500});
-	$("#about").backstretch('img/background-what-fixed.jpg');
-	$("#team").backstretch('img/background-team-fixed.jpg');
+	$("#about").backstretch(a);
+	$("#team").backstretch(t);
 }
 
 function placeholderFallback() {
@@ -82,5 +83,5 @@ $(document).ready(function() {
 		});
 
  	formSubmit();
- 	
+
 });
