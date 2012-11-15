@@ -70,6 +70,13 @@ body {
   margin-top: 5px;
 }
 
+#menu img {
+  margin-right: 25px;
+  float:left;
+  height: 20px;
+  margin-top: -2px;
+}
+
 #menu a:last-child {
   margin-right: 0px;
 }
@@ -165,16 +172,6 @@ img {
   margin: auto;
 }
 
-h2 {
-  font-family: 'Viga', sans-serif;
-  text-align: center;
-  font-size: 1.5em;
-  -webkit-margin-before: 1em;
-  -webkit-margin-after: 1.5em;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  font-weight: bold;
-}
 
 .content {
   width: 40%;
@@ -189,13 +186,44 @@ h2 {
   line-height: 24px;
 }
 
+.member img {
+  width: 15%;
+  float: left;
+}
+
+.member:before,
+.member:after {
+    content:"";
+    display:table;
+}
+.member:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.member {
+    zoom:1;
+}
+
+.memgroup {
+  float: left;
+  width: 75%;
+  margin-left: 30px;
+}
+
 .minilogo {
   width: 60%;
 }
 
-.content h1 {
+h1 {
+  color: #a51d21;
+  font-size: 22px;
   font-weight: bold;
-  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.content h2 {
+  font-weight: bold;
+  padding: 10px 0;
 }
 
 .content .subcont {

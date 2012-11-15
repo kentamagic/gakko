@@ -5,9 +5,11 @@ function backstretchPages() {
 	b = "img/background"+size+".jpg";
 	t = "img/team"+size+".jpg";
 	a = "img/about"+size+".jpg";
+	apply = "img/apply"+size+".jpg";
 	$.backstretch(b, {speed: 500});
 	$("#about").backstretch(a);
 	$("#team").backstretch(t);
+	$("#apply").backstretch(apply);
 }
 
 function placeholderFallback() {
