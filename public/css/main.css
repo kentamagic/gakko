@@ -54,6 +54,29 @@ body {
   font-weight: 300;
 }
 
+.shadow {
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+.hide{
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.asubcont{
+
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+.subcont{
+  font-size: 14px;
+}
+
 .navbar {
   overflow: hidden;
   padding: 10px 20%;
@@ -63,7 +86,7 @@ body {
   background-color: black;
   height: 30px;
   position: absolute;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 #menu {
@@ -124,6 +147,9 @@ input, textarea {
   background: #FFFFFF;
   font-size: 16px;
   color: #9e9f9f;
+  -moz-box-shadow:    inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow:         inset 0 0 5px #000000;
 }
 
 .submit-button {
@@ -174,9 +200,10 @@ img {
 
 
 .content {
-  width: 40%;
+  width: 50%;
   background: white;
   color: #423A36;
+  font-size: 18px;
   position: absolute;
   top: 20%;
   padding: 30px;
@@ -184,6 +211,10 @@ img {
   -webkit-border-radius: 5px;
   left: 5%;
   line-height: 24px;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+
 }
 
 .member img {
@@ -211,7 +242,7 @@ img {
 }
 
 .minilogo {
-  width: 60%;
+  width: 30%;
 }
 
 h1 {
