@@ -8,19 +8,28 @@
   %script{:src => "/js/vendor/modernizr-2.6.2.min.js"}
 
 %body
-  %header
+  .navbar
+    #menu
+      %a#home-link{:href => "#home"} Home
+      %a#about-link{:href => "#about"} About
+      %a#team-link{:href => "#team"} Team
+  %header.content#home
     %hgroup
       %img#logo{:src => "img/logo.png"}
     #mc_embed_signup
       %form.validate{:action => "/signup"}
         #success{:style => "display:none"} Thank you!  You're on the list.
-        %input#mce-EMAIL.required.email{:type => "email", :value => "", :name => "EMAIL", :placeholder => "Enter your email for Gakko 2013 updates!"}
+        %input#mce-EMAIL.required.email{:value => "", :name => "EMAIL", :placeholder => "Enter your email for Gakko 2013 updates!"}
         #mce-responses.clear
           .response#mce-error-response{:style => "display: none;"}
           .response#mce-success-response{:style => "display: none;"}
         .clear
         %button#mc-embedded-subscribe.submit-button{:type => "submit", :value => "Subscribe", :name => "subscribe"}
           %span.hide-text Submit
+  #about.panel
+    .content
+  #team.panel
+    .content
   %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", :type => "text/javascript"}
   %script{:src => "/js/vendor/bootstrap.min.js", :type => "text/javascript"}
   %script{:src => "/js/vendor/jquery.backstretch.min.js", :type => "text/javascript"}

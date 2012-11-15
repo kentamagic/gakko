@@ -54,6 +54,37 @@ body {
   font-weight: 300;
 }
 
+.navbar {
+  overflow: hidden;
+  padding: 10px 20%;
+  top: 0;
+  width: 20000px;
+  z-index: 99999;
+  background-color: black;
+  height: 30px;
+  position: absolute;
+  opacity: 0.6;
+}
+
+#menu {
+  margin-top: 5px;
+}
+
+#menu a:last-child {
+  margin-right: 0px;
+}
+
+#menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 25px;
+}
+
+#menu a:hover {
+  text-decoration: underline;
+}
+
 header {
   left: 30%;
   top: 40%;
@@ -74,11 +105,12 @@ form {
 }
 
 input, textarea {  
+    border: solid 3px #9e8f88;
   float: left;
   padding: 10px 10px 10px 20px;  
   border: none;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   outline: 0;  
   width: 328px;
   height: 20px;  
@@ -90,8 +122,8 @@ input, textarea {
 .submit-button {
   float: left;
   margin-left: 10px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   width: 50px;
   height: 40px;
   background: #9e8f88 url('../img/right.png') center no-repeat; 
@@ -142,4 +174,23 @@ h2 {
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
   font-weight: bold;
+}
+
+.panel{
+    width: 98%;
+  min-height: 100%;
+  position: absolute;
+  background-color: #000;
+  box-shadow: 4px -4px 4px rgba(0,0,0,0.2);
+  margin-left: -102%;
+  z-index:2;
+  -webkit-transition: all .6s;
+  -moz-transition: all .6s;
+  -o-transition: all .6s;
+  -ms-transition: all .6s;
+  transition: all .6s;
+}
+.panel:target{
+    margin-left: 0%;
+    background-color: #eadfd9;
 }
