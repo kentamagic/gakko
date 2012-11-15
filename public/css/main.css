@@ -176,6 +176,36 @@ h2 {
   font-weight: bold;
 }
 
+.content {
+  width: 40%;
+  background: white;
+  color: #423A36;
+  position: absolute;
+  top: 20%;
+  padding: 30px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  left: 5%;
+  line-height: 24px;
+}
+
+.minilogo {
+  width: 60%;
+}
+
+.content h1 {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.content .subcont {
+  margin-bottom: 30px;
+}
+
+.content .subcont:last-child {
+  margin-bottom: 0;
+}
+
 .panel{
     width: 98%;
   min-height: 100%;
