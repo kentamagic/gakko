@@ -5,7 +5,7 @@ function backstretchPages() {
 	b = "img/background"+size+".jpg";
 	t = "img/team"+size+".jpg";
 	a = "img/about"+size+".jpg";
-	apply = "img/apply"+size+".jpg";
+	apply = "img/apply"+2000+".jpg";
 	$.backstretch(b, {speed: 500});
 	$("#about").backstretch(a);
 	$("#team").backstretch(t);

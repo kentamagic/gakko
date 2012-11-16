@@ -81,9 +81,9 @@ body {
 
 .navbar {
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 10px 40px;
   top: 0;
-  width: 99%;
+  width: 100%;
   z-index: 99999;
   background-color: black;
   height: 30px;
@@ -93,6 +93,7 @@ body {
 
 #menu {
   margin-top: 5px;
+  margin-right: 60px;
 }
 
 #menu img {
@@ -114,6 +115,11 @@ body {
 
 #menu a#home-logo {
   float: left;
+}
+
+#twitter-link img, #facebook-link img {
+  height: 30px;
+  margin-top: -5px;
 }
 
 header {
@@ -293,6 +299,10 @@ h1 {
 .content h2 {
   font-weight: bold;
   padding: 10px 0;
+}
+
+.content a h2 {
+  color: #a51d21;
 }
 
 .content .subcont {
