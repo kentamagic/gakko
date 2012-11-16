@@ -50,9 +50,12 @@ function formSubmit() {
 		} else {
 			var emailAddress = $("form input#mce-EMAIL").val();
 			$.post("/signup", {email: emailAddress}, function() {
-				$("#success").show();
-				$("form input").hide();
 				$('.submit-button').css('background', "#26b78c url('../img/success.png') center no-repeat");
+				setTimeout(200, function(){ 
+					$("#success").show();
+					$("form input").hide();
+				});
+
 			})
 			.error(function() {
 				$("form input").attr('placeholder', 'Please try again...');
@@ -77,10 +80,32 @@ $(document).ready(function() {
 	subconts = $(".asubcont");
 
 	$("#next").click(function() {
-		subcont_index = (subcont_index+1)%subconts.length
-		$(".asubcont").addClass("hide")
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = (subcont_index+1)%subconts.length;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
 		$(subconts[subcont_index]).removeClass("hide");
-		console.log(subcont_index, subconts.length);
+	});
+	$("#previous").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = (subcont_index+(subconts.length-1))%subconts.length;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
+	});
+	$("#id1").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = 0;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
+	});
+	$("#id2").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = 1;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
 	});
 
 
