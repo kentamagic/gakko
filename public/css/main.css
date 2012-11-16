@@ -99,7 +99,6 @@ body {
   margin-right: 25px;
   float:left;
   height: 20px;
-  margin-top: -2px;
 }
 
 #menu a {
@@ -120,7 +119,7 @@ body {
 
 header {
   left: 30%;
-  top: 30%;
+  top: 40%;
   margin-top: -100px;
   margin-left: -220px;
   overflow: hidden;
@@ -128,7 +127,7 @@ header {
 }
 
 hgroup {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 form {
@@ -177,12 +176,15 @@ input, textarea {
 #success {
   float: left;
   padding: 11px 10px 9px 20px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   outline: 0;
   width: 328px;
   height: 20px;
-  font-size: 20px;
-  color: #A51D21;
-  font-weight: bold;
+  font-size: 16px;
+  color: #9e9f9f;
+  font-weight: normal;
+  background: white;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   line-height: 16px;
 }
@@ -201,7 +203,7 @@ img {
 
 .content {
   width: 50%;
-  background: white;
+  background: rgba(255, 255, 255, .7);
   color: #423A36;
   font-size: 18px;
   position: absolute;

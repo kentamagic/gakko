@@ -4,6 +4,7 @@
   %meta{:charset => "utf-8"}
   %meta{"http-equiv" =>"X-UA-Compatible", :content => "IE=edge,chrome=1"}
   %link{:rel => "stylesheet", :href => "/css/normalize.css"}
+  %link{:rel => "stylesheet", :href => "/css/vendor/bootstrap.min.css"}
   %link{:rel => "stylesheet", :href => "/css/main.css"}
   %script{:src => "/js/vendor/modernizr-2.6.2.min.js"}
 
@@ -11,10 +12,10 @@
   .navbar
     #menu
       %a#home-logo{:href => "#home"}
-        %img{:src => "img/titlelogo.png"}
-      %a#apply-link{:href => "#apply"} Apply
-      %a#about-link{:href => "#about"} About
-      %a#home-link{:href => "#home"} Home  
+        %img{:src => "img/titlelogo2.png", :height => "20px", :width => "75px"}
+      %a#apply-link{:href => "#apply"} APPLY
+      %a#about-link{:href => "#about"} ABOUT
+      %a#home-link{:href => "#home"} HOME  
 
   %header#home
     %hgroup
@@ -41,10 +42,12 @@
         %h2 GAKKO2012 in NAOSHIMA, JAPAN
         %p Summer 2012, the first GAKKO took place in Naoshima, Japan. 12 students from Yale and Harvard traveled to Japan for 3 weeks to design and execute a summer school from sratch. GAKKO invited 30 high school students from 6 countries to participate in the first GAKKO camp which took place from 8/4 to 8/9 in Naoshima. We invited 6 inspiring adults to each teach a class at GAKKO. We still keep in touch with everyone who came to the camp. It was a lot of fun. 
       %br
-      %a#previous.button{:href => "#about"} <<
+      %a#previous.button{:href => "#about"}
+        %i.icon-arrow-left
       %a#id1.button.selected{:href => "#about"} 1
       %a#id2.button{:href => "#about"} 2
-      %a#next.button{:href => "#about"} >> 
+      %a#next.button{:href => "#about"}
+        %i.icon-arrow-right
 
   #apply.panel
     .content

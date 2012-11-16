@@ -50,11 +50,9 @@ function formSubmit() {
 		} else {
 			var emailAddress = $("form input#mce-EMAIL").val();
 			$.post("/signup", {email: emailAddress}, function() {
+				$("#success").show();
+				$("form input").hide();
 				$('.submit-button').css('background', "#26b78c url('../img/success.png') center no-repeat");
-				$("#success").delay(1000).show();
-				$("form input").delay(1000).hide();
-				$("#mc-embedded-subscribe").delay(1000).hide();
-
 			})
 			.error(function() {
 				$("form input").attr('placeholder', 'Please try again...');
