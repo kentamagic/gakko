@@ -308,6 +308,10 @@ h1 {
   color: #a51d21;
 }
 
+.button i {
+  margin-top: 3px;
+}
+
 .content .subcont {
   margin-bottom: 20px;
 }
