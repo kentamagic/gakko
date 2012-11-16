@@ -51,10 +51,9 @@ function formSubmit() {
 			var emailAddress = $("form input#mce-EMAIL").val();
 			$.post("/signup", {email: emailAddress}, function() {
 				$('.submit-button').css('background', "#26b78c url('../img/success.png') center no-repeat");
-				setTimeout(200, function(){ 
-					$("#success").show();
-					$("form input").hide();
-				});
+				$("#success").delay(300).show();
+				$("form input").delay(300).hide();
+				$("#mc-embedded-subscribe").delay(300).hide();
 
 			})
 			.error(function() {
