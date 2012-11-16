@@ -5,7 +5,7 @@ function backstretchPages() {
 	b = "img/background"+size+".jpg";
 	t = "img/team"+size+".jpg";
 	a = "img/about"+size+".jpg";
-	apply = "img/apply"+size+".jpg";
+	apply = "img/apply"+2000+".jpg";
 	$.backstretch(b, {speed: 500});
 	$("#about").backstretch(a);
 	$("#team").backstretch(t);
@@ -67,24 +67,61 @@ function formSubmit() {
 	});
 }
 
-$(document).ready(function() {
+function tweet() {
+	$('.tweet').tweet({
+          avatar_size: 32,
+          count: 1,
+          username: "gakko2012",
+          template: "{text}"
+        });
+}
 
-	backstretchPages();
-
-	placeholderFallback();
+function aboutControls() {
 
 	subcont_index = 0;
 	subconts = $(".asubcont");
 
 	$("#next").click(function() {
-		subcont_index = (subcont_index+1)%subconts.length
-		$(".asubcont").addClass("hide")
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = (subcont_index+1)%subconts.length;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
 		$(subconts[subcont_index]).removeClass("hide");
-		console.log(subcont_index, subconts.length);
 	});
+	$("#previous").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = (subcont_index+(subconts.length-1))%subconts.length;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
+	});
+	$("#id1").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = 0;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
+	});
+	$("#id2").click(function() {
+		$("#id1, #id2").removeClass("selected");
+		subcont_index = 1;
+		$("#id"+(subcont_index+1)).addClass("selected");
+		$(".asubcont").addClass("hide");
+		$(subconts[subcont_index]).removeClass("hide");
+	});
+}
 
+$(document).ready(function() {
 
+	formSubmit();
 
+	backstretchPages();
+
+	placeholderFallback();	
+
+	aboutControls();
+	
+	tweet();
 	
 	/*
 	$("#logo")
@@ -97,7 +134,5 @@ $(document).ready(function() {
 				$(this).attr("src", src);
 		});
 	*/
-
- 	formSubmit();
 
 });

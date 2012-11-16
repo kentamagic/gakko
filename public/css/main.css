@@ -52,6 +52,8 @@ body {
   color: #fff;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  width: 100%;
+  overflow: hidden;
 }
 
 .shadow {
@@ -79,9 +81,9 @@ body {
 
 .navbar {
   overflow: hidden;
-  padding: 10px 20%;
+  padding: 10px 40px;
   top: 0;
-  width: 20000px;
+  width: 100%;
   z-index: 99999;
   background-color: black;
   height: 30px;
@@ -91,17 +93,12 @@ body {
 
 #menu {
   margin-top: 5px;
+  margin-right: 60px;
 }
 
 #menu img {
   margin-right: 25px;
   float:left;
-  height: 20px;
-  margin-top: -2px;
-}
-
-#menu a:last-child {
-  margin-right: 0px;
 }
 
 #menu a {
@@ -109,23 +106,79 @@ body {
   text-decoration: none;
   font-weight: bold;
   margin-right: 25px;
+  float: right;
 }
 
 #menu a:hover {
   text-decoration: underline;
 }
 
+#menu a#home-logo {
+  float: left;
+}
+
+#menu a#facebook-link {
+  margin-right: 20px;
+}
+
+#twitter-link img {
+  margin-top: -5px;
+  margin-right: 10px;
+}
+
+#facebook-link img {
+  margin-top: -5px;
+  margin-right: 0px;
+}
+
 header {
   left: 30%;
-  top: 40%;
+  top: 30%;
   margin-top: -100px;
   margin-left: -220px;
-  overflow: hidden;
   position: absolute;
 }
 
+#news {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 60px;
+  background: rgba(255, 255, 255, .5);
+  color: #513e37;
+  font-size: 18px;
+  position: absolute;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#news h1 {
+  color: #513e37;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.tweet {
+  margin-top: 10px;
+}
+
+.tweet_text {
+  line-height: 20px;
+}
+
+.tweet a {
+  color: #a51d21;
+  text-decoration: none;
+}
+
+.handle {
+  font-weight: normal;
+  color: #9e8f88;
+  font-style: italic;
+}
+
 hgroup {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 form {
@@ -184,7 +237,10 @@ input, textarea {
   font-weight: normal;
   background: white;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  line-height: 16px;
+  line-height: 16px;  
+  -moz-box-shadow:    inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow:         inset 0 0 5px #000000;
 }
 
 .hide-text {
@@ -201,11 +257,11 @@ img {
 
 .content {
   width: 50%;
-  background: white;
+  background: rgba(255, 255, 255, .7);
   color: #423A36;
   font-size: 18px;
   position: absolute;
-  top: 20%;
+  top: 15%;
   padding: 30px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -257,12 +313,31 @@ h1 {
   padding: 10px 0;
 }
 
+.content a h2 {
+  color: #a51d21;
+}
+
+.button i {
+  margin-top: 3px;
+}
+
 .content .subcont {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .content .subcont:last-child {
   margin-bottom: 0;
+}
+
+.button {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.button.selected {
+  color: #a51d21;
 }
 
 .panel{
