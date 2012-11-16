@@ -211,9 +211,9 @@ img {
   -webkit-border-radius: 5px;
   left: 5%;
   line-height: 24px;
-  -moz-box-shadow:    inset 0 0 10px #000000;
-  -webkit-box-shadow: inset 0 0 10px #000000;
-  box-shadow:         inset 0 0 10px #000000;
+  -moz-box-shadow:    inset 0 0 7px #000000;
+  -webkit-box-shadow: inset 0 0 7px #000000;
+  box-shadow:         inset 0 0 7px #000000;
 
 }
 
