@@ -12,16 +12,16 @@
     #menu
       %a#home-logo{:href => "#home"}
         %img{:src => "img/titlelogo.png"}
-      %a#home-link{:href => "#home"} Home 
-      %a#about-link{:href => "#about"} About 
-      %a#team-link{:href => "#team"} Team 
       %a#apply-link{:href => "#apply"} Apply
+      %a#about-link{:href => "#about"} About
+      %a#home-link{:href => "#home"} Home  
+
   %header#home
     %hgroup
       %img#logo{:src => "img/logohover.png"}
     #mc_embed_signup
       %form.validate{:action => "/signup"}
-        #success{:style => "display:none"} Thank you!  You're on the list.
+        #success{:style => "display:none"} Thank you for your signup!
         %input#mce-EMAIL.required.email{:value => "", :name => "EMAIL", :placeholder => "Enter your email for Gakko 2013 updates!"}
         #mce-responses.clear
           .response#mce-error-response{:style => "display: none;"}
@@ -46,39 +46,6 @@
       %a#id2.button{:href => "#about"} 2
       %a#next.button{:href => "#about"} >> 
 
-  #team.panel
-    .content
-      #board.subcont
-        %h1 GAKKO TEAM 
-        .member
-          %img{:src => "img/kenta.png"}
-          .memgroup
-            %h2 Kenta Koga, Director & Founder 
-            %p Kenta is a Junior at Yale, studying computer science and magic. His motivation to start GAKKO came from his own frustration towards how education is structured in Japan and at Yale. He also loves playing the guitar and dancing to salsa music. 
-
-        .member
-          %img{:src => ""}
-          .memgroup
-            %h2 Max Pommier, Art Director
-            %p 
-
-        .member
-          %img{:src => "img/kensho.png"}
-          .memgroup
-            %h2 Kensho Tambara, Media Director 
-            %p       
-      
-        .member
-          %img{:src => "img/nate.png"}
-          .memgroup
-            %h2 Nathaniel Toppelberg, Program Development  
-            %p 
-
-        .member
-          %img{:src => "img/flo.png"}
-          .memgroup
-            %h2 Florian Koenigsberger, Photographer 
-            %p
   #apply.panel
     .content
       %h1 GAKKO 2013 APPLICATION
