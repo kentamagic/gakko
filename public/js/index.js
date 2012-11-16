@@ -67,11 +67,16 @@ function formSubmit() {
 	});
 }
 
-$(document).ready(function() {
+function tweet() {
+	$('.tweet').tweet({
+          avatar_size: 32,
+          count: 1,
+          username: "gakko2012",
+          template: "{text}"
+        });
+}
 
-	backstretchPages();
-
-	placeholderFallback();
+function aboutControls() {
 
 	subcont_index = 0;
 	subconts = $(".asubcont");
@@ -104,17 +109,19 @@ $(document).ready(function() {
 		$(".asubcont").addClass("hide");
 		$(subconts[subcont_index]).removeClass("hide");
 	});
+}
 
+$(document).ready(function() {
 
-	$('.tweet').tweet({
-          avatar_size: 32,
-          count: 1,
-          username: "gakko2012",
-          template: "{text}"
-        });
+	formSubmit();
 
+	backstretchPages();
 
+	placeholderFallback();	
 
+	aboutControls();
+	
+	tweet();
 	
 	/*
 	$("#logo")
@@ -127,7 +134,5 @@ $(document).ready(function() {
 				$(this).attr("src", src);
 		});
 	*/
-
- 	formSubmit();
 
 });
