@@ -118,7 +118,7 @@ body {
 
 header {
   left: 30%;
-  top: 35%;
+  top: 30%;
   margin-top: -100px;
   margin-left: -220px;
   position: absolute;
@@ -130,8 +130,16 @@ header {
   margin-left: 60px;
 }
 
+#news h1 {
+  font-size: 16px;
+}
+
+.tweet {
+  margin-top: 10px;
+}
+
 .tweet_text {
-  line-height: 30px;
+  line-height: 20px;
 }
 
 .tweet a {
