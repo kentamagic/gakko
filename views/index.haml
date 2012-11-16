@@ -30,6 +30,12 @@
         .clear
         %button#mc-embedded-subscribe.submit-button{:type => "submit", :value => "Subscribe", :name => "subscribe"}
           %span.hide-text Submit
+    .clear
+    #news
+      %h1
+        %em.handle
+          @gakko2013
+        .tweet
   #about.panel
     .content
       .subcont
@@ -54,9 +60,10 @@
       %h1 GAKKO 2013 APPLICATION
       %h2 GAKKO 2013: 7/24 - 8/10 in Japan
       %p GAKKO team for GAKKO 2013 will arrive in Tokyo on 7/24 and will be there for 2 weeks to prepare for the camp. This will include developing the program, meeting with the sponsors, and bonding with the team operating in Japan. After the 2 weeks of preperation, team will move to SHODOSHIMA where we will execute a week long summer school for high school students. 
-      %h2 GO TO APPLICATION. 
+      %h2 GO TO APPLICATION.
   %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", :type => "text/javascript"}
   %script{:src => "/js/vendor/bootstrap.min.js", :type => "text/javascript"}
   %script{:src => "/js/vendor/jquery.backstretch.min.js", :type => "text/javascript"}
+  %script{:src => "/js/vendor/jquery.tweet.js", :type => "text/javascript"}
   %script{:src => "/js/plugins.js", :type => "text/javascript"}
   %script{:src => "/js/index.js", :type => "text/javascript"}

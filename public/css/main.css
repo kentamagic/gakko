@@ -98,7 +98,6 @@ body {
 #menu img {
   margin-right: 25px;
   float:left;
-  height: 20px;
 }
 
 #menu a {
@@ -119,11 +118,31 @@ body {
 
 header {
   left: 30%;
-  top: 40%;
+  top: 35%;
   margin-top: -100px;
   margin-left: -220px;
-  overflow: hidden;
   position: absolute;
+}
+
+#news {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 60px;
+}
+
+.tweet_text {
+  line-height: 30px;
+}
+
+.tweet a {
+  color: #a51d21;
+  text-decoration: none;
+}
+
+.handle {
+  font-weight: normal;
+  color: #9e8f88;
+  font-style: italic;
 }
 
 hgroup {

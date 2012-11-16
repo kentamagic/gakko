@@ -106,6 +106,14 @@ $(document).ready(function() {
 	});
 
 
+	$('.tweet').tweet({
+          avatar_size: 32,
+          count: 1,
+          username: "gakko2012",
+          template: "{text}"
+        });
+
+
 
 	
 	/*
