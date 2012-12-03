@@ -1,3 +1,6 @@
 .DS_Store
 Gemfile.lock
+*.sassc
 .sass-cache
+
+*.txt
