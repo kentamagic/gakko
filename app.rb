@@ -2,17 +2,33 @@ require 'rubygems'
 require 'sinatra'
 require 'hominid' # MailChimp
 require 'haml'
+require 'sass'
+require 'coffee-script'
+
+# Set Sinatra variables
+set :app_file, __FILE__
+set :root, File.dirname(__FILE__)
+set :views, 'views'
+set :public_folder, 'public'
+set :haml, {:format => :html5} # default Haml format is :xhtml
 
 configure do
-
   # MailChimp configuration: ADD YOUR OWN ACCOUNT INFO HERE!
   set :mailchimp_api_key, ENV['MAILCHIMP-API'] 
   set :mailchimp_list_name, ENV['MAILCHIMP-LIST']
-
 end
 
 get '/' do
   haml :index
+end
+
+get '/sass/*.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  scss :"/stylesheets/#{params[:splat].first}"
+end
+
+get '/coffee/*.js' do
+  coffee :"/javascripts/#{params[:splat].first}"
 end
 
 post '/signup' do

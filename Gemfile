@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rack-google-analytics', '~> 0.9.2'
-gem 'hominid', '~> 3.0.2'
-gem 'sinatra', '~> 1.3.1'
+gem 'sinatra'
+gem 'rack', '~> 1.4.1'
 gem 'haml'
 gem 'sass'
+gem 'coffee-script'
 gem 'thin'
+
+gem 'hominid' # Mailchimp
+gem 'rack-google-analytics'
