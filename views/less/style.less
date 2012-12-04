@@ -1,0 +1,78 @@
+@import './views/less/base.less';
+
+/* Global Variables, styles */
+
+@font: 12px;
+@lineHeight: 16px;
+
+.transparent {
+  opacity: 0;
+}
+
+/* Overarching styles */
+
+html, body, #wrapper, .panel {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", helvetica;
+  font-size: @font;
+  line-height: @lineHeight;
+  color: black;
+  //overflow: hidden;
+}
+
+#wrapper {
+  min-width: 960px;
+}
+
+.panel {
+  background-size: cover;
+  background-position: 0% 80%;
+  position: relative;
+  overflow: hidden;
+}
+
+#home {
+  background-image: url(/images/background2000.jpg)
+}
+#about {
+  background-image: url(/images/about2000.jpg)
+}
+#team {
+  background-image: url(/images/team2000.jpg)
+}
+#apply {
+  background-image: url(/images/apply2000.jpg)
+}
+
+/* Index page */
+
+.logo {
+  .transition(opacity, 2s);
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  max-height: 24%;
+  max-width: 50%;
+  .transparent {
+    z-index: -1;
+  }
+}
+
+/* About page */
+@contentSize: 300px;
+
+.about-content {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  height: @contentSize;
+  width: @contentSize;
+  .rounded(@contentSize);
+  padding: @contentSize / 4;
+  background-color: rgba(255,255,255,0.9);
+}
+

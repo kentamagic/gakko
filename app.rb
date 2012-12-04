@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'hominid' # MailChimp
 require 'haml'
-require 'sass'
+require 'less'
 require 'coffee-script'
 
 # Set Sinatra variables
@@ -11,6 +11,7 @@ set :root, File.dirname(__FILE__)
 set :views, 'views'
 set :public_folder, 'public'
 set :haml, {:format => :html5} # default Haml format is :xhtml
+Less.paths << settings.views
 
 configure do
   # MailChimp configuration: ADD YOUR OWN ACCOUNT INFO HERE!
@@ -22,13 +23,13 @@ get '/' do
   haml :index
 end
 
-get '/sass/*.css' do
+get '/less/*.css' do
   content_type 'text/css', :charset => 'utf-8'
-  scss :"/stylesheets/#{params[:splat].first}"
+  less :"/less/#{params[:splat].first}"
 end
 
 get '/coffee/*.js' do
-  coffee :"/javascripts/#{params[:splat].first}"
+  coffee :"/coffee/#{params[:splat].first}"
 end
 
 post '/signup' do
