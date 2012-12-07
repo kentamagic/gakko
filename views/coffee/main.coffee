@@ -6,8 +6,8 @@ $(document).ready ->
   window.scrolling = false
   window.time = 500
   window.frames = [
-    '#home',
-    '#about',
+    '#home'
+    '#about'
     '#team'
   ]
   # hash = window.location.hash
