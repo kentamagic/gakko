@@ -11,7 +11,7 @@ set :root, File.dirname(__FILE__)
 set :views, 'views'
 set :public_folder, 'public'
 set :haml, {:format => :html5} # default Haml format is :xhtml
-Less.paths << settings.views
+Less.paths << (settings.views + "/less")
 
 configure do
   # MailChimp configuration: ADD YOUR OWN ACCOUNT INFO HERE!
@@ -23,13 +23,13 @@ get '/' do
   haml :index
 end
 
-get '/less/*.css' do
+get '/styles' do
   content_type 'text/css', :charset => 'utf-8'
-  less :"/less/#{params[:splat].first}"
+  less :"less/style"
 end
 
-get '/coffee/*.js' do
-  coffee :"/coffee/#{params[:splat].first}"
+get '/scripts' do
+  coffee :"/coffee/main"
 end
 
 post '/signup' do

@@ -3,6 +3,26 @@ $(document).ready ->
   setTimeout( ->
     $(".logo").toggleClass "transparent"
   , 500)
+  bImages = {
+    0: "background2000.jpg"
+    1: "about2000.jpg"
+    2: "connect_small.jpg"
+  }
+  index = 0
+  $(window).bind('mousewheel', () ->
+    top = $("body").scrollTop()
+    height = $(".panel").height()
+    tempIndex = Math.floor(Math.abs(top)/height)
+    newIndex = Math.floor((tempIndex+1)/2)
+    if newIndex isnt index
+      newImg = bImages[newIndex]
+      # console.log newImg, "t, h, ni: ", top, height, newIndex
+      if newImg
+        $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
+        index = newIndex
+        
+  )
+  ###
   window.scrolling = false
   window.time = 500
   window.frames = [
@@ -15,7 +35,7 @@ $(document).ready ->
   if window.currentFrame is -1
     window.currentFrame = 0
     window.location.hash = window.frames[0]
-  
+
   $(window).bind('mousewheel', (e, d) ->
     e.preventDefault()
     dir = -1
@@ -30,6 +50,7 @@ $(document).ready ->
       e.preventDefault()
       movePanel(1)
   )
+###
 
 movePanel = (dir) ->
   return if window.currentFrame is 0 and dir is -1
@@ -68,14 +89,3 @@ backstretchPages = ->
   $("#about").backstretch about
   $("#team").backstretch team
   $("#apply").backstretch apply
-
-
-# Fix console on console-less browsers
-unless window.console and console.log
-  (->
-    noop = ->
-    methods = ["assert", "clear", "count", "debug", "dir", "dirxml", "error", "exception", "group", "groupCollapsed", "groupEnd", "info", "log", "markTimeline", "profile", "profileEnd", "markTimeline", "table", "time", "timeEnd", "timeStamp", "trace", "warn"]
-    length = methods.length
-    console = window.console = {}
-    console[methods[length]] = noop while length--
-  )()
