@@ -20,18 +20,28 @@ $(document).ready ->
         $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
         index = newIndex
   )
-  enter = [70, 50]
-  leave = [50, 30]
+  enter = [90]
+  leave = [$("circle:first").attr("r")]
   circles = d3.selectAll("circle")
   trans = circles.transition().duration(200)
+  sOpac = 0.7
   $("circle").mouseenter(() ->
+    console.log $("#nav-space").val()
+    width = $("#nav-width").val() || 20
+    value = $("#nav-space").val() || "24.61 16.61"
+    inn = $("#nav-in").val()
     circles.data(enter).transition().duration(200).attr("r", (d) ->
-      return d
-    )
+      return inn || d
+    ).attr("stroke-dasharray", value).attr("stroke-opacity", 1).attr("stroke-width", width)
   ).mouseleave(() ->
+    out = $("#nav-out").val()
     circles.data(leave).transition().duration(200).attr("r", (d) ->
-      return d
-    )
+      return out || d
+    ).attr("stroke-dasharray", "").attr("stroke-opacity", sOpac)
+  )
+
+  $("#nav-hide").click(() ->
+    $("#nav-help").hide()
   )
   ###
   window.scrolling = false
