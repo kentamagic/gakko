@@ -8,19 +8,30 @@ $(document).ready ->
     1: "about2000.jpg"
     2: "connect_small.jpg"
   }
+  panelHeight = $(".panel").height()
   index = 0
   $(window).bind('mousewheel', () ->
     top = $("body").scrollTop()
-    height = $(".panel").height()
-    tempIndex = Math.floor(Math.abs(top)/height)
-    newIndex = Math.floor((tempIndex+1)/2)
+    newIndex = Math.floor (((top-20)/panelHeight) + 1)/2 
     if newIndex isnt index
       newImg = bImages[newIndex]
-      # console.log newImg, "t, h, ni: ", top, height, newIndex
+      console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
       if newImg
         $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
         index = newIndex
-        
+  )
+  enter = [70, 50]
+  leave = [50, 30]
+  circles = d3.selectAll("circle")
+  trans = circles.transition().duration(200)
+  $("circle").mouseenter(() ->
+    circles.data(enter).transition().duration(200).attr("r", (d) ->
+      return d
+    )
+  ).mouseleave(() ->
+    circles.data(leave).transition().duration(200).attr("r", (d) ->
+      return d
+    )
   )
   ###
   window.scrolling = false
