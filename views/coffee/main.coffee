@@ -20,15 +20,36 @@ $(document).ready ->
         $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
         index = newIndex
   )
-  enter = [90]
-  leave = [$("circle:first").attr("r")]
+  height = $("#nav-logo").height()
+  origPath = makePath("small")
+  newPath = makePath("big")
+  nav = d3.select("#logo-path")
+  origPath = nav.attr("d")
+  origColor = nav.attr("fill")
+  newPath = "M 300, 0 a 150,150 0 1,1 -0.1,0 M 300 25 a 100, 100 0 1,1 -0.1 0"
+  newColor = "rgba(187, 24, 24, 1)"
+  $("#nav-logo").mouseenter(() ->
+    nav
+      .transition()
+      .attr("d", newPath)
+      .attr("fill", newColor)
+  ).mouseleave(() ->
+    nav
+      .transition()
+      .attr("d", origPath)
+      .attr("fill", origColor)
+  )
+  ###
+  circ = $("circle:first")
+  enter = [150]
+  strokeDef = $(circ).attr("stroke-width")
+  leave = [$(circ).attr("r")]
   circles = d3.selectAll("circle")
-  trans = circles.transition().duration(200)
   sOpac = 0.7
   $("circle").mouseenter(() ->
     console.log $("#nav-space").val()
-    width = $("#nav-width").val() || 20
-    value = $("#nav-space").val() || "24.61 16.61"
+    width = $("#nav-width").val() || strokeDef
+    value = $("#nav-space").val() || "44.61 36.61"
     inn = $("#nav-in").val()
     circles.data(enter).transition().duration(200).attr("r", (d) ->
       return inn || d
@@ -37,8 +58,9 @@ $(document).ready ->
     out = $("#nav-out").val()
     circles.data(leave).transition().duration(200).attr("r", (d) ->
       return out || d
-    ).attr("stroke-dasharray", "").attr("stroke-opacity", sOpac)
+    ).attr("stroke-dasharray", "").attr("stroke-opacity", sOpac).attr("stroke-width", strokeDef)
   )
+  ###
 
   $("#nav-hide").click(() ->
     $("#nav-help").hide()

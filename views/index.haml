@@ -2,25 +2,9 @@
   %img.logo{:src => "/images/logos/logo.png"}
   %img.logo.transparent{:src => "/images/logos/logohover.png"}
 
-= haml :about
-= haml :team
-= haml :about
-= haml :team
+= haml :nav
 
-:plain
-  <svg id="nav">
-    <circle cx="200" cy="0" r="30" fill="transparent" stroke-width="20" stroke="#AC1433" stroke-opacity="0.7"/>
-  </svg>
-  <div id="nav-help">
-    <input id="nav-space" type="text" size="11" placeholder="24.61 16.61" />
-    <label>Experiment with different values for the "explosion" of the circle here. In format "float float", eg "10.2 5.8" representing border-width and space, respectively. Just type a well-formatted value in and hover over the top circle and you'll see what i mean (default 24.61 16.61)</label><br/>
-    <input id="nav-out" type="text" size="3" placeholder=30 />
-    <label>Experiment with different closed radii here (default is 30)</label><br/>
-    <input id="nav-in" type="text" size="3" placeholder=90 />
-    <label>Experiment with different open radii here (default is 90)</label><br/>
-    <input id="nav-width" type="text" size="3" placeholder=20 />
-    <label>Stroke width (default is 20)</label>
-    <p>Sorry, it's hard to make exactly the logo with just one circle. If you think it's worth pursuing (here, or on the side) i'll look into it. Also, sorry i couldn't replicate the color exactly.</p>
-    <b id="nav-hide">Click here to hide all this text (refresh to show)</b>
-    
-  </div>
+= haml :about
+= haml :team
+= haml :about
+= haml :team

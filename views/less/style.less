@@ -1,4 +1,27 @@
-@import './views/less/base.less';
+@import 'base.less';
+
+@font-face {
+  font-family: 'Myriad SemiExt';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Myriad SemiExt"), 
+    url(/fonts/myriad/MyriadPro-LightSemiExt.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Myriad SemiExt';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Myriad SemiExt"), 
+    url(/fonts/myriad/MyriadPro-Regular.otf) format("opentype");
+}
+@font-face {
+  font-family: 'Myriad SemiExt';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Myriad SemiExt"), 
+    url(/fonts/myriad/MyriadPro-Semibold.otf) format("opentype");
+}
 
 /* Global Variables, styles */
 
@@ -21,7 +44,7 @@ html, body, #wrapper, .panel {
 }
 
 body {
-  font-family: "HelveticaNeue-Light", helvetica;
+  font-family: "Myriad SemiExt", "HelveticaNeue-Light", helvetica;
   font-size: @font;
   line-height: @lineHeight;
   color: black;
@@ -35,14 +58,14 @@ body {
   min-width: 960px;
 }
 
-@width: 400px;
-#nav {
+@nav-width: 600px;
+#nav-logo {
   position: fixed;
-  width: @width;
-  height: @width/2;
-  left: 50%;
-  margin-left: -1*@width / 2;
-  top: 0;
+  width: @nav-width;
+  height: @nav-width;
+  right: -1*@nav-width / 2;
+  bottom: -1*@nav-width * 0.6;
+  border: 1pt solid #eee;
 }
 
 #nav-help {
