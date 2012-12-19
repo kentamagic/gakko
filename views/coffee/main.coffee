@@ -1,33 +1,61 @@
+backShift = (bImages, currIndex) ->
+  panelHeight = $(".panel").height()
+  top = $("body").scrollTop()
+  newIndex = Math.floor (((top-20)/panelHeight) + 1)/2 
+  if newIndex isnt currIndex
+    newImg = bImages[newIndex]
+    # console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
+    if newImg
+      $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
+      return newIndex
+
+# old: M 150, 50 a 100,100 0 1,1 -0.1,0 M 150 75 a 60, 60 0 1,1 -0.1 0
+# new: M 150, 0 a 150,150 0 1,1 -0.1,0 M 150 25 a 100, 100 0 1,1 -0.1 0
+
+# Draws two concentric circle-paths, to make the Gakko logo
+# shrinkFactor must be a float <= 1
+makePath = (shrinkFactor = 1) ->
+  height = $("#nav-logo").height()
+  half = height/2
+  radius = half*shrinkFactor
+  offset = half - radius
+
+  smallRadius = radius * 0.6
+  smallOffset = offset + (radius - smallRadius) * 0.5
+
+  tail = "0 1,1 -0.1,0"         # Same thing appended to all paths...
+
+  path = "M #{half},#{offset} a #{radius},#{radius} #{tail} \
+M #{half},#{smallOffset} a #{smallRadius},#{smallRadius} #{tail}"
+  path
+
 $(document).ready ->
-  # backstretchPages()
+  # Fade the logo in
   setTimeout( ->
     $(".logo").toggleClass "transparent"
   , 500)
+
+  # Array of all background images
   bImages = {
     0: "background2000.jpg"
     1: "about2000.jpg"
     2: "connect_small.jpg"
   }
-  panelHeight = $(".panel").height()
   index = 0
+  # Switch them in and out depending
   $(window).bind('mousewheel', () ->
-    top = $("body").scrollTop()
-    newIndex = Math.floor (((top-20)/panelHeight) + 1)/2 
-    if newIndex isnt index
-      newImg = bImages[newIndex]
-      console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
-      if newImg
-        $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
-        index = newIndex
+    index = backShift(bImages, index)
   )
-  height = $("#nav-logo").height()
-  origPath = makePath("small")
-  newPath = makePath("big")
   nav = d3.select("#logo-path")
-  origPath = nav.attr("d")
+
+  origPath = makePath(0.5)
+  newPath = makePath(1)
+  console.log origPath, "\n", nav.attr("d")
+  nav.attr("d", origPath)
+
   origColor = nav.attr("fill")
-  newPath = "M 300, 0 a 150,150 0 1,1 -0.1,0 M 300 25 a 100, 100 0 1,1 -0.1 0"
   newColor = "rgba(187, 24, 24, 1)"
+
   $("#nav-logo").mouseenter(() ->
     nav
       .transition()
@@ -39,61 +67,10 @@ $(document).ready ->
       .attr("d", origPath)
       .attr("fill", origColor)
   )
-  ###
-  circ = $("circle:first")
-  enter = [150]
-  strokeDef = $(circ).attr("stroke-width")
-  leave = [$(circ).attr("r")]
-  circles = d3.selectAll("circle")
-  sOpac = 0.7
-  $("circle").mouseenter(() ->
-    console.log $("#nav-space").val()
-    width = $("#nav-width").val() || strokeDef
-    value = $("#nav-space").val() || "44.61 36.61"
-    inn = $("#nav-in").val()
-    circles.data(enter).transition().duration(200).attr("r", (d) ->
-      return inn || d
-    ).attr("stroke-dasharray", value).attr("stroke-opacity", 1).attr("stroke-width", width)
-  ).mouseleave(() ->
-    out = $("#nav-out").val()
-    circles.data(leave).transition().duration(200).attr("r", (d) ->
-      return out || d
-    ).attr("stroke-dasharray", "").attr("stroke-opacity", sOpac).attr("stroke-width", strokeDef)
-  )
-  ###
 
   $("#nav-hide").click(() ->
     $("#nav-help").hide()
   )
-  ###
-  window.scrolling = false
-  window.time = 500
-  window.frames = [
-    '#home'
-    '#about'
-    '#team'
-  ]
-  # hash = window.location.hash
-  window.currentFrame = 0 # window.frames.indexOf hash
-  if window.currentFrame is -1
-    window.currentFrame = 0
-    window.location.hash = window.frames[0]
-
-  $(window).bind('mousewheel', (e, d) ->
-    e.preventDefault()
-    dir = -1
-    dir = 1 if d < 0
-    movePanel(dir)
-  )
-  $(window).keydown((e) ->
-    if e.which is 38 # up
-      e.preventDefault()
-      movePanel(-1)
-    else if e.which is 40 # down
-      e.preventDefault()
-      movePanel(1)
-  )
-###
 
 movePanel = (dir) ->
   return if window.currentFrame is 0 and dir is -1
