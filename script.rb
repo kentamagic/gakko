@@ -43,7 +43,7 @@ string = ""
   path = "M #{big[i][0]}, #{big[i][1]} A #{R},#{R} 0 0,0 #{big[i+1][0]}, #{big[i+1][1]} "
   path += "L #{small[i+1][0]}, #{small[i+1][1]} "
   path += "A #{r},#{r} 0 0,1 #{small[i][0]}, #{small[i][1]} Z"
-  string += "<path class='nav-piece' id='#{numbers[i]}' fill='#513E37'"
+  string += "<path class='nav-piece' target='#{i+1}' fill='#513E37'"
   string += " fill-opacity='0.5' stroke='none' d='#{path}' />\n\t\t"
 end
 

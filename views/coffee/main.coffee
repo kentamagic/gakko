@@ -83,8 +83,13 @@ $(document).ready ->
   origColor = d3.select(".nav-piece").attr("fill")
   d3.selectAll(".nav-piece").on("mouseover", () ->
     d3.select(this).transition().attr("fill", newColor).attr("fill-opacity", 1)
+    id = d3.select(this).attr("target")
+    $("#cap-#{id}").addClass("shown")
+    console.log id
   ).on("mouseout", () ->
     d3.select(this).transition().attr("fill", origColor).attr("fill-opacity", 0.5)
+    id = d3.select(this).attr("target")
+    $("#cap-#{id}").removeClass("shown")
   )
 
   $("#anav-logo").mouseenter(() ->
