@@ -17,16 +17,18 @@ backShift = (bImages, currIndex) ->
 makePath = (shrinkFactor = 1) ->
   height = $("#nav-logo").height()
   half = height/2
+  sixty = height*0.45
   radius = half*shrinkFactor
   offset = half - radius
 
-  smallRadius = radius * 0.6
+  smallRadius = radius * 0.65
   smallOffset = offset + (radius - smallRadius) * 0.5
 
   tail = "0 1,1 -0.1,0"         # Same thing appended to all paths...
 
   path = "M #{half},#{offset} a #{radius},#{radius} #{tail} \
 M #{half},#{smallOffset} a #{smallRadius},#{smallRadius} #{tail}"
+  console.log shrinkFactor, ":", path
   path
 
 $(document).ready ->
@@ -46,17 +48,46 @@ $(document).ready ->
   $(window).bind('mousewheel', () ->
     index = backShift(bImages, index)
   )
-  nav = d3.select("#logo-path")
+  expand = 100
+  moving = false
+  $("#nav-container").mouseenter(() ->
+    $(".nav-img.hover").removeClass("hidden")
+    $(".nav-img:not(.hover)").addClass("hidden")
+    for img in $(".nav-img")
+      angle = $(img).attr("angle")
+      bottom = Math.cos(angle*Math.PI / 180)
+      right = Math.sin(angle*Math.PI / 180)
+      $(img).delay(angle*1.5).animate(
+        bottom: "#{bottom * expand}px"
+        right: "#{right * expand}px"
+      , 80)
+  ).mouseleave(() ->
+    $(".nav-img.hover").addClass("hidden")
+    $(".nav-img:not(.hover)").removeClass("hidden")
+    for img in $(".nav-img")
+      $(img).animate(
+        bottom: 0
+        right: 0
+      , 80)
 
-  origPath = makePath(0.5)
-  newPath = makePath(1)
-  console.log origPath, "\n", nav.attr("d")
-  nav.attr("d", origPath)
+  )
+  # nav = d3.select("#logo-path")
 
-  origColor = nav.attr("fill")
-  newColor = "rgba(187, 24, 24, 1)"
+  # origPath = makePath(0.71)
+  # newPath = makePath(1)
+  # nav.attr("d", origPath)
 
-  $("#nav-logo").mouseenter(() ->
+  # origColor = nav.attr("fill")
+  newColor = "#B82025"
+
+  origColor = d3.select(".nav-piece").attr("fill")
+  d3.selectAll(".nav-piece").on("mouseover", () ->
+    d3.select(this).transition().attr("fill", newColor).attr("fill-opacity", 1)
+  ).on("mouseout", () ->
+    d3.select(this).transition().attr("fill", origColor).attr("fill-opacity", 0.5)
+  )
+
+  $("#anav-logo").mouseenter(() ->
     nav
       .transition()
       .attr("d", newPath)
@@ -71,6 +102,7 @@ $(document).ready ->
   $("#nav-hide").click(() ->
     $("#nav-help").hide()
   )
+  ### 
 
 movePanel = (dir) ->
   return if window.currentFrame is 0 and dir is -1

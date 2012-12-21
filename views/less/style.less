@@ -28,7 +28,7 @@
 @font: 12px;
 @lineHeight: 16px;
 
-.transparent {
+.hidden {
   opacity: 0;
 }
 
@@ -63,7 +63,7 @@ body {
   position: fixed;
   width: @nav-width;
   height: @nav-width;
-  right: -1*@nav-width / 2;
+  right: -1*@nav-width *0.45;
   bottom: -1*@nav-width * 0.45;
 }
 
@@ -77,6 +77,40 @@ body {
 #nav-hide {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.nav-piece {
+  cursor: pointer;
+}
+
+.nav-img {
+  // display: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  border: 1pt solid #eee;
+  .transition(opacity, 0.1s);
+}
+
+@expand: 50px;
+#one.hover {
+  bottom: @expand;
+}
+#two.hover {
+  bottom: 30px;
+}
+#three.hover {
+  bottom: 30px;
+}
+#four.hover {
+  bottom: 30px;
+}
+#five.hover {
+  bottom: 30px;
+}
+#six.hover {
+  right: 30px;
 }
 
 // .back {
