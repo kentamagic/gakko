@@ -14,10 +14,9 @@ backShift = (bImages, currIndex) ->
 
 makePaths = (expand=false) ->
   PI = 3.14159265358
-  center_offset = 44
-  center_offset_y = 84 # Unused
-  bound = $("#nav-logo").width() - center_offset/2
-  console.log bound
+  BOUND_SCALE = 0.927
+  bound = $("#nav-logo").width() * BOUND_SCALE
+  center_offset = $("#nav-logo").width() * (1.05-BOUND_SCALE)
   num_frames = 6      # => we need num_frames+1 values in each array
   if expand
     R = bound
@@ -34,7 +33,7 @@ makePaths = (expand=false) ->
   start_y = Math.sqrt(R*R - (center_offset*center_offset))
   angle_extra = Math.atan(start_y/center_offset)
   angle_difference = PI/2 - angle_extra
-  interval = PI/2+2*angle_difference
+  interval = PI/2 + 2*angle_difference
 
   big = []
   small = []
@@ -78,43 +77,47 @@ $(document).ready ->
     1: "about2000.jpg"
     2: "connect_small.jpg"
   }
+  # Current index (in bImages array)
   index = 0
-  # Switch them in and out depending
   $(window).bind('mousewheel', () ->
     index = backShift(bImages, index)
+  ).resize(() =>
+    $("#nav-logo").height($("#nav-logo").width())
+    this.paths = makePaths()
+    this.expandedPaths = makePaths(true)
+    for p, i in pieces[0]
+      d3.select(p).attr("d", this.paths[i])
   )
 
   pieces = d3.selectAll(".nav-piece")
   newColor = "#B82025"
   origColor = pieces.attr("fill")
-  paths = makePaths()
+  this.paths = makePaths()
+  this.expandedPaths = makePaths(true)
+  $(window).resize()
 
-  for p, i in pieces[0]
-    d3.select(p).attr("d", paths[i])
+  delay = 30
+  duration = 200
+  $("#nav-logo").mouseenter(() =>
+    $("#nav-captions").fadeIn("fast")
+    for p, i in pieces[0]
+      d3.select(p)
+        .transition().delay(delay*i).duration(duration)
+        .attr("d", this.expandedPaths[i])
+  ).mouseleave(() =>
+    $("#nav-captions").fadeOut("fast")
+    for p, i in pieces[0]
+      d3.select(p)
+        .transition().delay(delay*i).duration(duration)
+        .attr("d", this.paths[i])
+  )
 
   pieces.on("mouseover", () ->
-    d3.select(this).transition().attr("fill", newColor).attr("fill-opacity", 1)
+    d3.select(this).attr("fill", newColor).attr("fill-opacity", 1)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").addClass("shown")
-    # console.log id
   ).on("mouseout", () ->
-    d3.select(this).transition().attr("fill", origColor).attr("fill-opacity", 0.5)
+    d3.select(this).attr("fill", origColor).attr("fill-opacity", 0.5)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").removeClass("shown")
-  )
-
-  $("#anav-logo").mouseenter(() ->
-    nav
-      .transition()
-      .attr("d", newPath)
-      .attr("fill", newColor)
-  ).mouseleave(() ->
-    nav
-      .transition()
-      .attr("d", origPath)
-      .attr("fill", origColor)
-  )
-
-  $("#nav-hide").click(() ->
-    $("#nav-help").hide()
   )

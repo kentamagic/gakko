@@ -66,13 +66,13 @@ body {
   z-index: 100;
 }
 
-@nav-width: 280px;
 @nav-right: 22px;
 @nav-bottom: 42px;
 #nav-logo {
   position: fixed;
   width: 20%;
-  height: @nav-width+@nav-bottom;
+  max-width: 280px;
+  min-width: 150px;
   right: 0;
   bottom: 0;
   // border: 1pt solid #eee;
@@ -92,6 +92,10 @@ body {
 
 .nav-piece {
   cursor: pointer;
+}
+
+#nav-captions {
+  display: none;
 }
 
 .nav-caption {
