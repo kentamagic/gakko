@@ -92,6 +92,9 @@ adjustCaptions = () ->
     step = gakko.interval/gakko.numFrames
     angle = (num-0.5)*step + gakko.angleExtra
     bottom = radius*Math.sin(angle).toFixed(3)
+    if num is gakko.numFrames
+      toAdd = map(radius, 120.0, 300.0, 3, 20)
+      bottom += toAdd
     right = -radius*Math.cos(angle).toFixed(3)  # Negative because we're in quadrant II but measuring positively
     $("#cap-#{num}").css(
       fontSize: "#{size}px"
