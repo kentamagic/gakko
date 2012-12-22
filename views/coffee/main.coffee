@@ -14,7 +14,7 @@ backShift = (bImages, currIndex) ->
 
 # Draws two concentric circle-paths, to make the Gakko logo
 # shrinkFactor must be a float <= 1
-makePath = (shrinkFactor = 1) ->
+oldMakePath = (shrinkFactor = 1) ->
   height = $("#nav-logo").height()
   half = height/2
   sixty = height*0.45
@@ -30,6 +30,62 @@ makePath = (shrinkFactor = 1) ->
 M #{half},#{smallOffset} a #{smallRadius},#{smallRadius} #{tail}"
   console.log shrinkFactor, ":", path
   path
+
+makePaths = (expand=false) ->
+  PI = 3.14159265358
+  bound = 250
+  center_offset = 44
+  num_frames = 6      # => we need num_frames+1 values in each array
+
+  R = 220
+  r = 144
+  inner_offset = 40
+  ex_R = 280
+  ex_r = 182
+  ex_inner_offset = 50
+
+  # Big circle equation:    x^2 + y^2 = R^2
+  # Little circle equation: x^2 + (y-inner_offset)^2 = r^2
+  # To convert from actaul coordinates to svg coordinates:
+  # (svg_x, svg_y) = (x+bound, bound-y)
+
+  start_y = Math.sqrt(R*R - (center_offset*center_offset))
+  angle_extra = Math.atan(start_y/center_offset)
+  angle_difference = PI/2 - angle_extra
+  interval = PI/2+2*angle_difference
+
+  big = []
+  small = []
+  for num in [0..num_frames]
+    angle = num*(interval/num_frames) + angle_extra
+
+    big_x = R*Math.cos(angle)
+    big_y = R*Math.sin(angle)
+    big_point = [(bound+big_x).toFixed(3), (bound-big_y).toFixed(3)]
+    big.push big_point
+
+    y_sign = x_sign = 1
+    x_sign = -1 if angle < PI/2
+    y_sign = -1 if angle >= PI
+
+    slope = (big_y) / (big_x)
+    # puts "big point: "+big_x.to_s+", "+big_y.to_s+" slope: "+slope.to_s
+    small_x = x_sign*Math.sqrt(-(inner_offset*inner_offset) + (r*r*slope*slope) + r*r)
+    small_x = inner_offset*slope - small_x
+    small_x = small_x / (slope*slope + 1)
+    small_y = y_sign*Math.sqrt(r*r - small_x*small_x) + inner_offset
+    small_point = [(bound+small_x).toFixed(3), (bound-small_y).toFixed(3)]
+    small.push small_point
+
+  paths = []
+  for i in [0...num_frames]
+    path = "M #{big[i][0]},#{big[i][1]} A #{R},#{R} 0 0,0 #{big[i+1][0]}, #{big[i+1][1]} "
+    path += "L #{small[i+1][0]}, #{small[i+1][1]} "
+    path += "A #{r},#{r} 0 0,1 #{small[i][0]}, #{small[i][1]} Z"
+    paths.push path
+
+  paths
+
 
 $(document).ready ->
   # Fade the logo in
@@ -48,8 +104,8 @@ $(document).ready ->
   $(window).bind('mousewheel', () ->
     index = backShift(bImages, index)
   )
+  ###
   expand = 100
-  moving = false
   $("#nav-container").mouseenter(() ->
     $(".nav-img.hover").removeClass("hidden")
     $(".nav-img:not(.hover)").addClass("hidden")
@@ -69,8 +125,8 @@ $(document).ready ->
         bottom: 0
         right: 0
       , 80)
-
   )
+  ###
   # nav = d3.select("#logo-path")
 
   # origPath = makePath(0.71)
@@ -78,14 +134,19 @@ $(document).ready ->
   # nav.attr("d", origPath)
 
   # origColor = nav.attr("fill")
+  pieces = d3.selectAll(".nav-piece")
   newColor = "#B82025"
+  origColor = pieces.attr("fill")
+  paths = makePaths()
 
-  origColor = d3.select(".nav-piece").attr("fill")
-  d3.selectAll(".nav-piece").on("mouseover", () ->
+  for p, i in pieces[0]
+    d3.select(p).attr("d", paths[i])
+
+  pieces.on("mouseover", () ->
     d3.select(this).transition().attr("fill", newColor).attr("fill-opacity", 1)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").addClass("shown")
-    console.log id
+    # console.log id
   ).on("mouseout", () ->
     d3.select(this).transition().attr("fill", origColor).attr("fill-opacity", 0.5)
     id = d3.select(this).attr("target")

@@ -57,15 +57,25 @@ body {
 
 #wrapper {
   min-width: 960px;
+  position: relative;
+  z-index: 0;
 }
 
-@nav-width: 600px;
+#nav-container {
+  position: fixed;
+  z-index: 100;
+}
+
+@nav-width: 250px;
+@nav-right: 22px;
+@nav-bottom: 42px;
 #nav-logo {
   position: fixed;
-  width: @nav-width;
-  height: @nav-width;
-  right: -1*@nav-width *0.45;
-  bottom: -1*@nav-width * 0.45;
+  width: @nav-width+@nav-right;
+  height: @nav-width+@nav-right;
+  right: 0;
+  bottom: 0;
+  border: 1pt solid #eee;
 }
 
 #nav-help {
@@ -178,6 +188,8 @@ body {
 // }
 
 .panel {
+  position: relative;
+  overflow: hidden;
   height: 110%;
   &.img {
     background-color: transparent;
@@ -186,8 +198,6 @@ body {
     background-image: url(/images/backgrounds/creampaper.png);
     background-repeat: repeat;
   }
-  position: relative;
-  overflow: hidden;
 }
 
 @import "./index.less";
