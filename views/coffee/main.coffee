@@ -6,6 +6,7 @@ gakko.interval = PI/2                 # The angle interval on the nav-logo circl
 gakko.extraAngle = 0                  # The preceding angle (to put interval 
                                       # in the correct (II) quadrant)
 gakko.paths = gakko.expandedPaths = []# The arrays where the nav-logo shapes are stored
+gakko.index = 0                       # The current frame being shown
 
 # Utility: maps value from in between min and max 
 # linearly to in between newMin and newMax
@@ -13,23 +14,16 @@ map = (val, min, max, newMin, newMax) ->
   return (newMax - newMin)*(val-min)/(max - min) + newMin
 
 # Changes background image based on background position
-backShift = (bImages, currIndex) ->
+backShift = () ->
   panelHeight = $(".panel").height()
   top = $("body").scrollTop()
   newIndex = Math.floor (((top-20)/panelHeight) + 1)/2 
-  if newIndex isnt currIndex
+  if newIndex isnt gakko.index
     $(".back").hide()
     back = $(".back")[newIndex]
     $(back).show()
-    # newImg = bImages[newIndex]
-    # # console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
-    # if newImg
-    #   $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
-    return newIndex
-  return currIndex
+    gakko.index = newIndex
 
-# old: M 150, 50 a 100,100 0 1,1 -0.1,0 M 150 75 a 60, 60 0 1,1 -0.1 0
-# new: M 150, 0 a 150,150 0 1,1 -0.1,0 M 150 25 a 100, 100 0 1,1 -0.1 0
 # Makes the nav logo shapes, for both expanded and contracted
 makePaths = (expand=false) ->
   # BOUND_SCALE is necessary because the circles aren't centered 
@@ -107,53 +101,45 @@ adjustCaptions = () ->
     )
 
 $(document).ready ->
+  gakko.pieces = d3.selectAll(".nav-piece")
   # Fade the logo in
   setTimeout( ->
     $(".logo").toggleClass "transparent"
   , 500)
 
-  # Array of all background images
-  bImages = {
-    0: "background2000.jpg"
-    1: "about2000.jpg"
-    2: "connect_small.jpg"
-    3: "apply2000.jpg"
-  }
-  # Current index (in bImages array)
-  index = 0
+  # Window events
   $(window).scroll(() ->
-    index = backShift(bImages, index)
-  ).resize(() =>
+    backShift()
+  ).resize(() ->
     $("#nav-logo").height($("#nav-logo").width())
     gakko.paths = makePaths()
     gakko.expandedPaths = makePaths(true)
-    for p, i in pieces[0]
+    for p, i in gakko.pieces[0]
       d3.select(p).attr("d", gakko.paths[i])
     adjustCaptions()
   )
-
-  pieces = d3.selectAll(".nav-piece")
+  $(window).resize()        # Trigger resize event to create paths
+  
+  # Navigation animation 
   newColor = "#B82025"
-  origColor = pieces.attr("fill")
-  $(window).resize()                  # Trigger resize event to create paths
-
+  origColor = gakko.pieces.attr("fill")
   delay = 30
   duration = 200
   $("#nav-logo").mouseenter(() ->
     $("#nav-captions").fadeIn("fast")
-    for p, i in pieces[0]
+    for p, i in gakko.pieces[0]
       d3.select(p)
         .transition().delay(delay*i).duration(duration)
         .attr("d", gakko.expandedPaths[i])
   ).mouseleave(() ->
     $("#nav-captions").fadeOut("fast")
-    for p, i in pieces[0]
+    for p, i in gakko.pieces[0]
       d3.select(p)
         .transition().delay(delay*i).duration(duration)
         .attr("d", gakko.paths[i])
   )
 
-  pieces.on("mouseover", () ->
+  gakko.pieces.on("mouseover", () ->
     d3.select(this).attr("fill", newColor).attr("fill-opacity", 1)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").addClass("highlight")
@@ -165,7 +151,6 @@ $(document).ready ->
     id = parseInt(d3.select(this).attr("target"))
     from = $("body").scrollTop()
     dest = $($(".panel")[id]).offset().top
-    console.log from, dest
     $("body,html,document").animate(
       scrollTop: dest
     , Math.abs(dest-from)/3 + 100)
