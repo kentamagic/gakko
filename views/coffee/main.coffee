@@ -18,11 +18,15 @@ backShift = (bImages, currIndex) ->
   top = $("body").scrollTop()
   newIndex = Math.floor (((top-20)/panelHeight) + 1)/2 
   if newIndex isnt currIndex
-    newImg = bImages[newIndex]
-    # console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
-    if newImg
-      $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
-      return newIndex
+    $(".back").hide()
+    back = $(".back")[newIndex]
+    $(back).show()
+    # newImg = bImages[newIndex]
+    # # console.log newImg, "t, h, ni: ", top, panelHeight, newIndex
+    # if newImg
+    #   $("body").css("backgroundImage", "url(/images/backgrounds/#{newImg})");
+    return newIndex
+  return currIndex
 
 # old: M 150, 50 a 100,100 0 1,1 -0.1,0 M 150 75 a 60, 60 0 1,1 -0.1 0
 # new: M 150, 0 a 150,150 0 1,1 -0.1,0 M 150 25 a 100, 100 0 1,1 -0.1 0
