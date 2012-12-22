@@ -78,18 +78,6 @@ body {
   // border: 1pt solid #eee;
 }
 
-#nav-help {
-  position: fixed;
-  top: 0;
-  left: 65%;
-  width: 400px;
-}
-
-#nav-hide {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 .nav-piece {
   cursor: pointer;
 }
@@ -103,17 +91,13 @@ body {
   color: #513E37;
   opacity: 0.5;
   font-weight: normal;
-  text-align: center;
-  font-size: 24px;
-  line-height: 30px;
+  // font-size: 24px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  &.shown {
+  &.highlight {
     color: #B82025;
     opacity: 1;
   }
   .transition(all, 0.2s);
-  bottom: 500px; 
-  right: 200px;
 }
 
 #cap-1 {
