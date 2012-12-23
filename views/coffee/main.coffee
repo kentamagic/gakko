@@ -122,8 +122,9 @@ $(document).ready ->
   
   # Navigation animation 
   newColor = "#B82025"
-  origColor = gakko.pieces.attr("fill")
-  delay = 30
+  origColor = "white"
+  origOpacity = "0.7"
+  delay = 0
   duration = 200
   $("#nav-logo").mouseenter(() ->
     $("#nav-captions").fadeIn("fast")
@@ -140,11 +141,15 @@ $(document).ready ->
   )
 
   gakko.pieces.on("mouseover", () ->
-    d3.select(this).attr("fill", newColor).attr("fill-opacity", 1)
+    d3.select(this)
+      .attr("fill", newColor)
+      .attr("fill-opacity", 1)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").addClass("highlight")
   ).on("mouseout", () ->
-    d3.select(this).attr("fill", origColor).attr("fill-opacity", 0.5)
+    d3.select(this)
+      .attr("fill", origColor)
+      .attr("fill-opacity", origOpacity)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").removeClass("highlight")
   ).on("click", () ->
@@ -155,3 +160,4 @@ $(document).ready ->
       scrollTop: dest
     , Math.abs(dest-from)/3 + 100)
   )
+  gakko.pieces.mouseout()
