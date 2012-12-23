@@ -84,7 +84,7 @@ makePaths = (expand=false) ->
 
 # Changes the placement and size of the nav-logo captions
 adjustCaptions = () ->
-  radius = $("#nav-logo").width()+20            # 20 was picked as a padding
+  radius = $("#nav-logo").width()+30            # 20 was picked as a padding
   size = map(radius, 120.0, 300.0, 10.0, 24.0)  # 120, 300 come from #nav-logo min and max-width.
   for num in [1..gakko.numFrames]
     step = gakko.interval/gakko.numFrames
@@ -97,8 +97,9 @@ adjustCaptions = () ->
     $("#cap-#{num}").css(
       fontSize: "#{size}px"
       lineHeight: "#{size}px"
-      bottom: "#{bottom+10}px"
-      right: "#{right+20}px"
+      # width: "#{size*4.5}px"
+      bottom: "#{bottom}px"
+      right: "#{right+2*(numFrames - num)}px"   # Move right-most items more than away from edge of screen
     )
 
 setupNav = () ->
@@ -121,16 +122,14 @@ $(document).ready ->
   setupNav()                   # The rest, which is also done in window.resize
   # Fade the logo in
   setTimeout( ->
-    $(".logo").toggleClass "transparent"
+    $(".logo").toggleClass "hidden"
   , 500)
-
   # Window events
   $(window).scroll(() ->
     backShift()
   ).resize(() ->
     setupNav()
   )
-  
   # Navigation animation 
   duration = 200
   $("#nav-logo").mouseenter(() ->

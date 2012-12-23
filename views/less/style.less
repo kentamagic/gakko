@@ -23,22 +23,16 @@
     url(/fonts/myriad/MyriadPro-Semibold.otf) format("opentype");
 }
 
-/* Global Variables, styles */
-
+/* Global Variables */
 @font: 12px;
 @lineHeight: 16px;
 
-.hidden {
-  opacity: 0;
-}
-
-.hide {
-  display: none;
-}
+.hidden { opacity: 0; }
+.hide { display: none; }
+.full-width { height:100%; width:100%; }
 
 /* Overarching styles */
-
-html, body, #wrapper, .panel {
+html, body, .panel, .back {
   height: 100%;
   width: 100%;
 }
@@ -57,6 +51,7 @@ body {
   z-index: 0;
 }
 
+/* Nav */
 #nav-container {
   position: fixed;
   z-index: 100;
@@ -92,38 +87,22 @@ body {
   &.highlight {
     color: #B82025;
     opacity: 1;
-    @highlight: rgba(255,255,255,0.7); 
+    @highlight: rgba(255,255,255,0.5); 
     background-color: @highlight;
     .box-shadow(0 0 5px 0 @highlight);
   }
   .transition(all, 0.2s);
 }
 
-/*
-.nav-img {
-  // display: none;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 30%;
-  border: 1pt solid #eee;
-  .transition(opacity, 0.1s);
-}
-*/
-
+/* Backgrounds */
 #back-container {
   position: fixed;
-  width: 100%;
-  height: 100%;
   z-index: -100;
 }
 
 .back {
-  height: 100%;
-  width: 100%;
   background-size: cover;
   background-attachment: fixed;
-  // display: none;
   &:first-child {
     background-image: url(/images/backgrounds/background2000.jpg);
     background-position: 0% 80%;
@@ -140,6 +119,7 @@ body {
   }
 }
 
+/* Panels */
 .panel {
   position: relative;
   overflow: hidden;
@@ -156,10 +136,3 @@ body {
 @import "./index.less";
 @import "./about.less";
 @import "./team.less";
-/* Index page */
-
-#marker {
-  position: absolute;
-  top: 0;
-  left: 50%;
-}
