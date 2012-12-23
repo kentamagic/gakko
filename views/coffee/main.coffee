@@ -96,8 +96,8 @@ adjustCaptions = () ->
     right = -radius*Math.cos(angle).toFixed(3)  # Negative because we're in quadrant II but measuring positively
     $("#cap-#{num}").css(
       fontSize: "#{size}px"
-      bottom: "#{bottom}px"
-      right: "#{right}px"
+      bottom: "#{bottom+10}px"
+      right: "#{right+20}px"
     )
 
 $(document).ready ->
