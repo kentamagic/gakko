@@ -35,7 +35,7 @@ makePaths = (expand=false) ->
   if expand
     R = bound
   else
-    R = bound*0.821
+    R = bound*0.6
   r = R*0.65
   inner_offset = R*0.18
 
