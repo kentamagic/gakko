@@ -1,12 +1,12 @@
-# Some useful global variables
+# Global variables
 gakko = this
 gakko.PI = 3.14159265358
 gakko.numFrames = 6                   # Number of nav items
 gakko.interval = PI/2                 # The angle interval on the nav-logo circle
-gakko.extraAngle = 0                  # The preceding angle (to put interval 
+gakko.extraAngle = 0                  # The preceding angle (to put gakko.interval 
                                       # in the correct (II) quadrant)
 gakko.paths = gakko.expandedPaths = []# The arrays where the nav-logo shapes are stored
-gakko.index = 0                       # The current frame being shown
+gakko.index = 0                       # The current window 'panel' being shown
 
 # Utility: maps value from in between min and max 
 # linearly to in between newMin and newMax
@@ -96,12 +96,29 @@ adjustCaptions = () ->
     right = -radius*Math.cos(angle).toFixed(3)  # Negative because we're in quadrant II but measuring positively
     $("#cap-#{num}").css(
       fontSize: "#{size}px"
+      lineHeight: "#{size}px"
       bottom: "#{bottom+10}px"
       right: "#{right+20}px"
     )
 
+setupNav = () ->
+  $("#nav-logo").height($("#nav-logo").width())
+  gakko.paths = makePaths()
+  gakko.expandedPaths = makePaths(true)
+  for p, i in gakko.pieces[0]
+    d3.select(p).attr("d", gakko.paths[i])
+  adjustCaptions()
+
 $(document).ready ->
+  # Setup
   gakko.pieces = d3.selectAll(".nav-piece")
+  origColor = "white"
+  origOpacity = 0.7
+  newColor = "#B82025"
+  gakko.pieces
+    .attr("fill", origColor)
+    .attr("fill-opacity", origOpacity)
+  setupNav()                   # The rest, which is also done in window.resize
   # Fade the logo in
   setTimeout( ->
     $(".logo").toggleClass "transparent"
@@ -111,32 +128,22 @@ $(document).ready ->
   $(window).scroll(() ->
     backShift()
   ).resize(() ->
-    $("#nav-logo").height($("#nav-logo").width())
-    gakko.paths = makePaths()
-    gakko.expandedPaths = makePaths(true)
-    for p, i in gakko.pieces[0]
-      d3.select(p).attr("d", gakko.paths[i])
-    adjustCaptions()
+    setupNav()
   )
-  $(window).resize()        # Trigger resize event to create paths
   
   # Navigation animation 
-  newColor = "#B82025"
-  origColor = "white"
-  origOpacity = "0.7"
-  delay = 0
   duration = 200
   $("#nav-logo").mouseenter(() ->
     $("#nav-captions").fadeIn("fast")
     for p, i in gakko.pieces[0]
       d3.select(p)
-        .transition().delay(delay*i).duration(duration)
+        .transition().duration(duration)
         .attr("d", gakko.expandedPaths[i])
   ).mouseleave(() ->
     $("#nav-captions").fadeOut("fast")
     for p, i in gakko.pieces[0]
       d3.select(p)
-        .transition().delay(delay*i).duration(duration)
+        .transition().duration(duration)
         .attr("d", gakko.paths[i])
   )
 
@@ -156,8 +163,8 @@ $(document).ready ->
     id = parseInt(d3.select(this).attr("target"))
     from = $("body").scrollTop()
     dest = $($(".panel")[id]).offset().top
+    time = Math.abs(dest-from)/3 + 100
     $("body,html,document").animate(
       scrollTop: dest
-    , Math.abs(dest-from)/3 + 100)
+    , time)
   )
-  gakko.pieces.mouseout()
