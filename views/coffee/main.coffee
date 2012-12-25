@@ -1,7 +1,7 @@
 # Global variables
 gakko = this
 gakko.PI = 3.14159265358
-gakko.numFrames = 6                   # Number of nav items
+gakko.numFrames = 7                   # Number of nav items
 gakko.interval = PI/2                 # The angle interval on the nav-logo circle
 gakko.extraAngle = 0                  # The preceding angle (to put gakko.interval 
                                       # in the correct (II) quadrant)
@@ -54,6 +54,7 @@ makePaths = (expand=false) ->
 
   big = []
   small = []
+  # numFrames + 1 times
   for num in [0..numFrames]
     angle = num*(interval/numFrames) + angle_extra
     big_x = R*Math.cos(angle)
@@ -63,9 +64,9 @@ makePaths = (expand=false) ->
 
     y_sign = x_sign = 1
     x_sign = -1 if num is 0
-    y_sign = -1 if num >= 5
+    y_sign = -1 if num >= numFrames-1
     slope = (big_y) / (big_x)
-    slope *= 10 if num is 6
+    slope *= 10 if num is numFrames
     
     small_x = x_sign*Math.sqrt(-(inner_offset*inner_offset) + (r*r*slope*slope) + r*r)
     small_x = inner_offset*slope - small_x
@@ -75,6 +76,7 @@ makePaths = (expand=false) ->
     small.push small_point
 
   paths = []
+  # numFrames times
   for i in [0...numFrames]
     path = "M #{big[i][0]},#{big[i][1]} A #{R},#{R} 0 0,0 #{big[i+1][0]}, #{big[i+1][1]} "
     path += "L #{small[i+1][0]}, #{small[i+1][1]} "
@@ -85,12 +87,12 @@ makePaths = (expand=false) ->
 # Changes the placement and size of the nav-logo captions
 adjustCaptions = () ->
   radius = $("#nav-logo").width()+30            # 20 was picked as a padding
-  size = map(radius, 120.0, 300.0, 10.0, 24.0)  # 120, 300 come from #nav-logo min and max-width.
-  for num in [1..gakko.numFrames]
+  size = map(radius, 120.0, 300.0, 10.0, 22.0)  # 120, 300 come from #nav-logo min and max-width.
+  for num in [0...gakko.numFrames]
     step = gakko.interval/gakko.numFrames
-    angle = (num-0.5)*step + gakko.angleExtra
+    angle = (num+0.5)*step + gakko.angleExtra
     bottom = radius*Math.sin(angle).toFixed(3)
-    if num is gakko.numFrames
+    if num is gakko.numFrames - 1
       toAdd = map(radius, 120.0, 300.0, 3, 20)
       bottom += toAdd
     right = -radius*Math.cos(angle).toFixed(3)  # Negative because we're in quadrant II but measuring positively
