@@ -1,7 +1,7 @@
 # Global variables
 gakko = this
 gakko.PI = 3.14159265358
-gakko.numFrames = 7                   # Number of nav items
+gakko.numFrames = 6                   # Number of nav items
 gakko.interval = PI/2                 # The angle interval on the nav-logo circle
 gakko.extraAngle = 0                  # The preceding angle (to put gakko.interval 
                                       # in the correct (II) quadrant)
@@ -149,19 +149,21 @@ $(document).ready ->
         .attr("d", gakko.paths[i])
   )
 
-  gakko.pieces.on("mouseover", () ->
+  gakko.pieces.on("mouseover", ->
     d3.select(this)
       .attr("fill", newColor)
       .attr("fill-opacity", 1)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").addClass("highlight")
-  ).on("mouseout", () ->
+  ).on("mouseout", ->
     d3.select(this)
       .attr("fill", origColor)
       .attr("fill-opacity", origOpacity)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").removeClass("highlight")
-  ).on("click", () ->
+  )
+  # Navigation click
+  $(".js-nav").click( ->
     id = parseInt(d3.select(this).attr("target"))
     from = $("body").scrollTop()
     dest = $($(".panel")[id]).offset().top
