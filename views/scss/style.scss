@@ -105,18 +105,18 @@ body {
   background-size: cover;
   background-attachment: fixed;
   &:first-child {
-    background-image: url(/images/backgrounds/background2000.jpg);
+    // background-image: url(/images/backgrounds/background2000.jpg);
     background-position: 0% 80%;
   }
   &:nth-child(2) {
-    background-image: url(/images/backgrounds/about2000.jpg);
+    // background-image: url(/images/backgrounds/about2000.jpg);
     background-position: 0% 80%;
   }
   &:nth-child(3) {
-    background-image: url(/images/backgrounds/connect_small.jpg);
+    // background-image: url(/images/backgrounds/connect_small.jpg);
   }
   &:nth-child(4) {
-    background-image: url(/images/backgrounds/apply2000.jpg);
+    // background-image: url(/images/backgrounds/apply2000.jpg);
   }
 }
 

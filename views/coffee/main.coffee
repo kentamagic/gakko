@@ -130,7 +130,25 @@ setupNav = () ->
   adjustCaptions()
 
 $(document).ready ->
+  $.fn.smartbg = (url, time, cb) ->
+    t = this
+    # create an img so the browser will download the image: 
+    $("<img />").attr("src", url).load ->
+      $(t).css "backgroundImage", "url(#{url})"
+      $(t).fadeIn time, ->
+        cb t if typeof cb is "function"
+    this
+
   # Setup
+  bImages = [
+    "background2000.jpg",
+    "about2000.jpg",
+    "connect_small.jpg",
+    "apply2000.jpg",
+  ]
+  for b, i in $(".back")
+    $(b).smartbg("/images/backgrounds/#{bImages[i]}", 200) 
+
   gakko.pieces = d3.selectAll(".nav-piece")
   gakko.rings = d3.selectAll(".nav-outline")
   origColor = "black"
