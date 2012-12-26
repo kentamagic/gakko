@@ -1,7 +1,61 @@
 #about.panel.txt
-  .about-content
-    %p Some text
-    %p Some more text
-    %p
-      %strong BOLD!
-    %p ads;lkfj a;lk ja
+  .about-container
+    %table.about-nav
+      %tr
+        %td.about-link{:target => "mission"} MISSION
+        %td.about-link{:target => "philosophy"} PHILOSOPHY
+        %td.about-link{:target => "today"} GAKKO, TODAY
+        %td.about-link{:target => "vision"} VISION
+
+    .about-content.mission.shown
+      .about-left
+        %p Content for mission
+    .about-content.philosophy
+      .about-left
+        %p Content for philosophy
+    .about-content.today
+      .about-left
+        %p Content for gakko, today, tomorrow and WHENEVA
+    .about-content.vision
+      .about-left
+        %p Some test
+        %p Some more test
+        %p Some test
+        %p Some test
+      .about-right
+        .circle.camp
+          .circle-text
+            %p GAKKO
+            %p.bold CAMP
+          .circle-overlay
+            %p 
+              GAKKO
+              %span.bold CAMP
+            .body-text
+              %p Summer 2013
+              %p 10 days, 10 classes, 30 high school students
+              %p Click here for a recap of GAKKO 2012
+
+        .circle.tech
+          .circle-text
+            %p GAKKO
+            %p.bold TECH
+          .circle-overlay
+            %p 
+              GAKKO
+              %span.bold TECH
+            .body-text
+              %p WE ARE THE ULTRA GEEKS
+              %p BEHIND KONY 2012
+
+        .circle.tank
+          .circle-text
+            %p GAKKO
+            %p.bold THINK TANK
+          .circle-overlay
+            %p 
+              GAKKO
+              %span.bold THINK TANK
+            .body-text
+              %p OUR TANKS WILL TAKE OVER THE WORLD
+              %p PEACE ON EARTH, DOE

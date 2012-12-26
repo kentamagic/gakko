@@ -115,8 +115,9 @@ setupNav = () ->
 $(document).ready ->
   # Setup
   gakko.pieces = d3.selectAll(".nav-piece")
-  origColor = "white"
-  origOpacity = 0.7
+  origColor = "black"
+  origColor = "#513E37"
+  origOpacity = 0.3
   newColor = "#B82025"
   gakko.pieces
     .attr("fill", origColor)
@@ -166,6 +167,18 @@ $(document).ready ->
     dest = $($(".panel")[id]).offset().top
     time = Math.abs(dest-from)/3 + 100
     $("body,html,document").animate(
-      scrollTop: dest
+      scrollTop: dest+10
     , time)
+  )
+
+  # About page
+
+  $(".about-link").click(->
+    if not $(this).hasClass("selected")
+      $(".about-link.selected").removeClass("selected")
+      $(".about-content.shown").removeClass("shown")
+      target = $(this).attr("target")
+      $(this).addClass("selected")
+      $(".about-content.#{target}").addClass("shown")
+
   )

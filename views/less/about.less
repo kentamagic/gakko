@@ -2,14 +2,129 @@
 
 @contentSize: 300px;
 
+.about-container {
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  padding: 100px 0;
+  font: normal 30pt "PT Sans";
+}
+
+.about-nav {
+  width: 100%;
+}
+
+.about-link {
+  color: rgba(81, 62, 55, 0.3);
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  &:hover {
+    color: rgba(81, 62, 55, 0.6);
+  }
+  &.selected {
+    color: rgba(0, 129, 187, 1.0);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  .transition(color, 0.2s);
+}
+
 .about-content {
   position: absolute;
-  top: 20px;
-  left: 100px;
-  height: @contentSize;
-  width: @contentSize;
-  .rounded(@contentSize);
-  padding: @contentSize / 4;
-  background-color: rgba(255,255,255,0.9);
+  font-size: 0;
+  opacity: 0;
+  top: 200px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &.shown {
+    opacity: 1;
+  }
+  > div {
+    display: inline-block;
+    // border: 1pt solid black;
+    vertical-align: top;
+  }
+  .transition(opacity, 0.2s);
 }
+
+.about-left {
+  font: normal 14pt/18pt 'Quattrocento';
+  width: 40%;
+  margin-right: 5%;
+}
+
+.about-right {
+  position: relative;
+  font-size: 18pt;
+  line-height: 22pt;
+  width: 50%;
+}
+
+@circle: 160px;
+.circle {
+  position: absolute;
+  background-color: rgba(81, 62, 55, 0.1);
+  width: @circle;
+  height: @circle;
+  .rounded(@circle);
+  padding: @circle/4;
+  // Which makes width actually @circle * 1.5
+  text-align: center;
+  cursor: pointer;
+  z-index: 0;
+  &.camp {
+    top: 20px;
+    left: 0;
+  }
+  &.tech {
+    top: 0px;
+    left: @circle * 1.2;
+  }
+  &.tank {
+    top: @circle * 1.1;
+    left: @circle * 0.75;
+  }
+  &:hover {
+    z-index: 1;
+    > .circle-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.circle-text {
+  margin-top: @circle/4;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+@overlay: @circle * 0.9;
+@overlayOffset: (@circle - @overlay) * 0.5;
+.circle-overlay {  
+  position: absolute;
+  top: @overlayOffset;
+  left: @overlayOffset;
+  width: @overlay;
+  height: @overlay;
+  .rounded(@overlay);
+  // @circle on padding or else the width changes in a weird way 
+  // and @offset isn't precise
+  padding: @circle/4; 
+  color: white;
+  text-align: left;
+  background-color: rgba(0, 129, 187, 1);
+  z-index: 10;
+  opacity: 0;
+  .transition(opacity, 0.1s);
+
+  > .body-text {
+    font: normal 10pt/12pt 'Quattrocento';
+    > p {
+      margin-top: 10px;
+    }
+  }
+}
+
+
+
+
 
