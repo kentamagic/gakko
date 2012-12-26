@@ -4,3 +4,5 @@ Gemfile.lock
 .sass-cache
 
 *.txt
+
+*/vendor/*
