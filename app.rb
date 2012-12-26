@@ -2,7 +2,6 @@ require 'rubygems'
 require 'sinatra'
 require 'hominid' # MailChimp
 require 'haml'
-require 'less'
 require 'sass'
 require 'coffee-script'
 
@@ -26,8 +25,8 @@ get '/styles' do
   # less :"less/style"
 end
 
-get '/scripts' do
-  coffee :"/coffee/main"
+get '/scripts/:name' do
+  coffee :"/coffee/#{params[:name]}"
 end
 
 post '/signup' do
