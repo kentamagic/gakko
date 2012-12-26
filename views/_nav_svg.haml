@@ -6,16 +6,18 @@
     .nav-caption#cap-3 TEAM
     .nav-caption#cap-4 2013
     .nav-caption#cap-5 CONTACT
-    
-
-  :plain
-    <!-- path values are filled in via Javascript -->
-    <svg id="nav-logo">
-      <path class='nav-piece js-nav' target='0' stroke='none' />
-      <path class='nav-piece js-nav' target='1' stroke='none' />
-      <path class='nav-piece js-nav' target='2' stroke='none' />
-      <path class='nav-piece js-nav' target='3' stroke='none' />
-      <path class='nav-piece js-nav' target='4' stroke='none' />
-      <path class='nav-piece js-nav' target='5' stroke='none' />
-      <path class='nav-piece js-nav' target='6' stroke='none' />
-    </svg>
+  
+  %svg#nav-logo
+    %path.nav-piece.js-nav{:target => "0"}
+    %path.nav-piece.js-nav{:target => "1"}
+    %path.nav-piece.js-nav{:target => "2"}
+    %path.nav-piece.js-nav{:target => "3"}
+    %path.nav-piece.js-nav{:target => "4"}
+    %path.nav-piece.js-nav{:target => "5"}
+    %path.nav-piece.js-nav{:target => "6"}
+    - color = "#B82025"
+    - color = "white"
+    %path.nav-outline{:fill => "none", :stroke => "#{color}", "stroke-opacity" => "0.5", "stroke-width" => "2"}
+    -# :d => "M 294 107.68 A 156,156 0 0,0 107.68 294", 
+    -# :d => "M 288 134 A 101.2,101.2 0 0,0 229 328", 
+    %path.nav-outline{:fill => "none", :stroke => "#{color}", "stroke-opacity" => "0.5", "stroke-width" => "2"}

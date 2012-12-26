@@ -6,6 +6,7 @@ gakko.interval = PI/2                 # The angle interval on the nav-logo circl
 gakko.extraAngle = 0                  # The preceding angle (to put gakko.interval 
                                       # in the correct (II) quadrant)
 gakko.paths = gakko.expandedPaths = []# The arrays where the nav-logo shapes are stored
+gakko.outlines = gakko.expandedOutlines = []
 gakko.index = 0                       # The current window 'panel' being shown
 
 # Utility: maps value from in between min and max 
@@ -76,13 +77,22 @@ makePaths = (expand=false) ->
     small.push small_point
 
   paths = []
+  outlines = []
   # numFrames times
   for i in [0...numFrames]
     path = "M #{big[i][0]},#{big[i][1]} A #{R},#{R} 0 0,0 #{big[i+1][0]}, #{big[i+1][1]} "
     path += "L #{small[i+1][0]}, #{small[i+1][1]} "
     path += "A #{r},#{r} 0 0,1 #{small[i][0]}, #{small[i][1]} Z"
     paths.push path
-  paths
+
+  outlines.push "M #{big[0][0]},#{big[0][1]} A #{R},#{R} \
+0 0,0 #{big[numFrames][0]}, #{big[numFrames][1]}"
+  outlines.push "M #{small[0][0]},#{small[0][1]} A #{r},#{r} \
+0 0,0 #{small[numFrames][0]}, #{small[numFrames][1]}"
+  return {
+    paths: paths
+    outlines: outlines
+  }
 
 # Changes the placement and size of the nav-logo captions
 adjustCaptions = () ->
@@ -106,15 +116,23 @@ adjustCaptions = () ->
 
 setupNav = () ->
   $("#nav-logo").height($("#nav-logo").width())
-  gakko.paths = makePaths()
-  gakko.expandedPaths = makePaths(true)
+  result = makePaths()
+  expandedResult = makePaths(true)
+  gakko.paths = result.paths
+  gakko.outlines = result.outlines
+  gakko.expandedPaths = expandedResult.paths
+  gakko.expandedOutlines = expandedResult.outlines
   for p, i in gakko.pieces[0]
     d3.select(p).attr("d", gakko.paths[i])
+  for o, i in gakko.rings[0]
+    d3.select(o).attr("d", gakko.outlines[i])
+    console.log gakko.outlines
   adjustCaptions()
 
 $(document).ready ->
   # Setup
   gakko.pieces = d3.selectAll(".nav-piece")
+  gakko.rings = d3.selectAll(".nav-outline")
   origColor = "black"
   origColor = "#513E37"
   origOpacity = 0.3
@@ -141,12 +159,20 @@ $(document).ready ->
       d3.select(p)
         .transition().duration(duration)
         .attr("d", gakko.expandedPaths[i])
+    for o, i in gakko.rings[0]
+      d3.select(o)
+        .transition().duration(duration)
+        .attr("d", gakko.expandedOutlines[i])
   ).mouseleave(() ->
     $("#nav-captions").fadeOut("fast")
     for p, i in gakko.pieces[0]
       d3.select(p)
         .transition().duration(duration)
         .attr("d", gakko.paths[i])
+    for o, i in gakko.rings[0]
+      d3.select(o)
+        .transition().duration(duration)
+        .attr("d", gakko.outlines[i])
   )
 
   gakko.pieces.on("mouseover", ->

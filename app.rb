@@ -26,8 +26,8 @@ end
 
 get '/styles' do
   content_type 'text/css', :charset => 'utf-8'
-  # less :"less/style"
   scss :"scss/style"
+  # less :"less/style"
 end
 
 get '/scripts' do

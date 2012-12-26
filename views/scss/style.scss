@@ -25,7 +25,6 @@
 
 /* Global Variables */
 $font: 12px;
-$lineHeight: 16px;
 $brown: #513E37;
 $blue: #0081BB;
 $red: #B82025;
@@ -44,7 +43,9 @@ html, body, .panel, .back {
 }
 
 body {
-  font: 200 $font/$lineHeight "MyMyriad", "HelveticaNeue-Light", sans-serif;
+  font-family: "PT Sans", "HelveticaNeue-Light", sans-serif;
+  font-weight: 200;
+  font-size: $font;
   color: black;
 }
 
