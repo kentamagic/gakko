@@ -1,0 +1,8 @@
+.logo {
+  @include transition(opacity 2s);
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  width: 40.5%;
+  max-width: 550px;
+}

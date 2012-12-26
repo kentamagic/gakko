@@ -3,6 +3,7 @@ require 'sinatra'
 require 'hominid' # MailChimp
 require 'haml'
 require 'less'
+require 'sass'
 require 'coffee-script'
 
 # Set Sinatra variables
@@ -25,7 +26,8 @@ end
 
 get '/styles' do
   content_type 'text/css', :charset => 'utf-8'
-  less :"less/style"
+  # less :"less/style"
+  scss :"scss/style"
 end
 
 get '/scripts' do
