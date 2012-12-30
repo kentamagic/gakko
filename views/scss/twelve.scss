@@ -1,0 +1,63 @@
+.quarter-panel {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+  &:first-child {
+    background-image: url(/images/backgrounds/team900.jpg);
+  }
+  &:nth-child(2) {
+    background-image: url(/images/backgrounds/apply900.jpg);
+  }
+  &:nth-child(3) {
+    background-image: url(/images/backgrounds/connect_small.jpg);
+  }
+  &:nth-child(4) {
+    background-image: url(/images/backgrounds/team900.jpg);
+  }
+
+  &:hover {
+    > .overlay {
+      opacity: 1;
+    }
+  }
+
+  > .overlay {
+    height: 100%; 
+    opacity: 0;
+    background-color: rgba(black, 0.3);
+    color: white;
+    text-align: center;
+
+    @include transition(opacity 0.3s);
+  }
+
+  p {
+    font-size: 24px;
+    padding-top: 25%;
+  }
+}
+
+$twelve-circle: 200px;
+
+.twelve-circle {
+  font-size: 64px;
+  position: absolute;
+  color: $red;
+  z-index: 10;
+  width: $twelve-circle;
+  height: $twelve-circle;
+  left: 50%;
+  top: 50%;
+  margin-left: -$twelve-circle*0.75;
+  margin-top: -$twelve-circle*0.75;
+  border-radius: $twelve-circle;
+  padding: $twelve-circle / 4;
+  text-align: center;
+  background-color: rgba(white, 0.8);
+  p {
+    font-weight: bold;
+    padding-top: 33%;
+  }
+}
