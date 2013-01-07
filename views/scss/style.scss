@@ -28,6 +28,7 @@ $font: 12px;
 $brown: #513E37;
 $blue: #0081BB;
 $red: #B82025;
+$grey: #35383B;
 
 .hidden { opacity: 0; }
 .hide { display: none; }
@@ -47,6 +48,15 @@ body {
   font-weight: 200;
   font-size: $font;
   color: black;
+}
+
+a {
+  color: $red;
+  text-decoration: none;
+  &:hover {
+    color: darken($red, 10%);
+    text-decoration: underline;
+  }
 }
 
 #wrapper {
@@ -137,3 +147,4 @@ body {
 @import "about";
 @import "twelve";
 @import "team";
+@import "connect";
