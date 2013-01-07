@@ -104,7 +104,7 @@ body {
 .back {
   background-size: cover;
   background-attachment: fixed;
-  &:first-child {
+  &:first-child, &:last-child {
     // background-image: url(/images/backgrounds/background2000.jpg);
     background-position: 0% 80%;
   }
