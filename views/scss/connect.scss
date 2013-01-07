@@ -1,0 +1,101 @@
+$connect-grey: rgba(#2B2E31, 0.7);
+
+.connect-content {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 23%;
+  text-align: justify;
+  background-color: rgba(white, 0.4);
+  padding: 30px;
+  border: 1pt solid rgba(white, 0.9);
+  > p {
+    font: normal 16pt 'Quattrocento';
+    color: $grey;
+  }
+}
+.connect-bar {
+  margin-top: 40px;
+  width: 100%;
+  td {
+    position: relative;
+  }
+  input {
+    width: 90%;
+    padding: 6px;
+    margin: 0;
+    font-size: 14px;
+    color: $connect-grey;
+    background-color: rgba(white, 0.7);
+    border: 1pt solid #ccc;
+    vertical-align: baseline;
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+    @include transition(border 0.2s, box-shadow 0.2s);
+    &:focus {
+      border-color: rgba($red, 0.8);
+      outline: 0;
+      outline: thin dotted 9;
+      @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba($red, 0.6));
+    }
+  }
+}
+
+.connect-icon-container {
+  width: 11%;
+  &:hover {
+    .connect-icon.inactive {
+      opacity: 0;
+    }
+    .connect-icon.active {
+      opacity: 1;
+    }
+  }
+}
+
+.connect-icon {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include transition(opacity 0.1s);
+  &.active {
+    opacity: 0;
+  }
+  &.twitter {
+    &.active {
+      background-image: url(/images/icons/twitter-active.png);
+    }
+    &.inactive {
+      background-image: url(/images/icons/twitter-inactive.png);
+    }
+  }
+  &.fb {
+    &.active {
+      background-image: url(/images/icons/fb-active.png);
+    }
+    &.inactive {
+      background-image: url(/images/icons/fb-inactive.png);
+    }
+  }
+  &.email {
+    &.active {
+      background-image: url(/images/icons/email-active.png);
+    }
+    &.inactive {
+      background-image: url(/images/icons/email-inactive.png);
+    }
+  }
+}
+
+.connect-signup-button {
+  background-color: $connect-grey;
+  color: #EDE0DA;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  &:hover {
+    background-color: darken($connect-grey, 20%);
+  }
+  @include transition(background-color 0.2s);
+}
