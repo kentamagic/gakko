@@ -1,0 +1,22 @@
+$thirteen-circle: 200px;
+
+.thirteen-circle {
+  font-size: 64px;
+  position: absolute;
+  color: $blue;
+  z-index: 10;
+  width: $twelve-circle;
+  height: $twelve-circle;
+  left: 50%;
+  top: 50%;
+  margin-left: -$twelve-circle*0.75;
+  margin-top: -$twelve-circle*0.75;
+  border-radius: $twelve-circle;
+  padding: $twelve-circle / 4;
+  text-align: center;
+  background-color: rgba(white, 0.8);
+  p {
+    font-weight: bold;
+    padding-top: 33%;
+  }
+}
