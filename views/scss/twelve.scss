@@ -1,35 +1,50 @@
+#twelve {
+  font-size: 0;
+}
+
 .quarter-panel {
   display: inline-block;
   position: relative;
   width: 50%;
   height: 50%;
-  cursor: pointer;
+  background-size: cover;
   &:first-child {
-    background-image: url(/images/backgrounds/team900.jpg);
+    background-image: url(/images/2012/arrival/1.jpg);
   }
   &:nth-child(2) {
-    background-image: url(/images/backgrounds/apply900.jpg);
+    background-image: url(/images/2012/prep/4.jpg);
   }
   &:nth-child(3) {
-    background-image: url(/images/backgrounds/connect_small.jpg);
+    background-image: url(/images/2012/camp/7.jpg);
   }
   &:nth-child(4) {
-    background-image: url(/images/backgrounds/team900.jpg);
+    background-image: url(/images/2012/reflections/5.jpg);
   }
-
   &:hover {
-    > .overlay {
+    .overlay {
       opacity: 1;
     }
   }
 
-  > .overlay {
+  img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    vertical-align: top;
+    border: none;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
     height: 100%; 
+    width: 100%;
+    z-index: 1;
     opacity: 0;
     background-color: rgba(black, 0.3);
     color: white;
     text-align: center;
-
     @include transition(opacity 0.3s);
   }
 

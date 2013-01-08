@@ -94,5 +94,21 @@ $(document).ready ->
       target = $(this).attr("target")
       $(this).addClass("selected")
       $(".about-content.#{target}").addClass("shown")
+  )
 
+  # 2012 page
+
+  $(".fancybox-thumb").fancybox(
+    prevEffect: 'none'
+    nextEffect: 'none'
+    padding: 0
+    margin: 0
+    maxWidth: "90%"
+    maxHeight: "90%"
+    helpers:
+      title:
+        type: 'over'
+      thumbs: 
+        width: 50
+        height: 50
   )
