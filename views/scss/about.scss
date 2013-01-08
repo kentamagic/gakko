@@ -21,7 +21,7 @@
   }
   &.selected {
     color: rgba($blue, 1.0);
-    text-shadow: 0 1px 1px rgba(black, 0.25);
+    text-shadow: none; //0 1px 1px rgba(black, 0.25);
   }
   @include transition(color 0.2s);
 }
