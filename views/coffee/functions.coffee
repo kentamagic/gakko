@@ -43,7 +43,6 @@ window.Gakko = Gakko = {
       @origColor = "white"
       @origOpacity = 0.7
       $(".nav-caption").removeClass("dark")
-      console.log $(".nav-caption")
     else
       @origColor = "#513E37"
       @origOpacity = 0.3
@@ -51,7 +50,6 @@ window.Gakko = Gakko = {
     @pieces
       .attr("fill", @origColor)
       .attr("fill-opacity", @origOpacity)
-    $(".nav-caption").addClass("dark")
 
   makePaths: (expand=false) ->
     # BOUND_SCALE is necessary because the circles aren't centered 
