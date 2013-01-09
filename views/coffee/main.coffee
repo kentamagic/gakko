@@ -12,7 +12,7 @@ $(document).ready ->
   bImages = [
     "background2000.jpg",
     "group2000.jpg",
-    "connect_small.jpg",
+    "apply2000.jpg",
     "background2000.jpg",
   ]
   for b, i in $(".back")
