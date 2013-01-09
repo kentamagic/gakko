@@ -20,3 +20,13 @@ $thirteen-circle: 200px;
     padding-top: 33%;
   }
 }
+
+#thirteen-two {
+  > h1 {
+    color: $grey;
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 0 1px 1px rgba(white, 0.25);
+    margin-top: 20%;
+  }
+}

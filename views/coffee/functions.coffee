@@ -7,6 +7,7 @@ window.Gakko = Gakko = {
   extraAngle: 0
 
   # Variables
+  scrolling: false                # Is the window scrolling? (bc of me)
   paths: []                       # The arrays where the nav-logo shapes/outlines are stored
   expandedPaths: []
   outlines: []

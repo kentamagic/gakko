@@ -27,7 +27,7 @@ $(document).ready ->
   # Window events -- make sure to change in Gakko.setupFancybox too!
   $(window).scroll(->
     Gakko.backShift()
-    Gakko.navColorShift()
+    Gakko.navColorShift() if not Gakko.scrolling
   ).resize(->
     Gakko.setupNav()
   )
@@ -71,13 +71,19 @@ $(document).ready ->
   )
   # Navigation click
   $(".js-nav").click( ->
+    Gakko.scrolling = true
     id = parseInt(d3.select(this).attr("target"))
+    id = 6 if id is 5
     from = $("body").scrollTop()
     dest = $($(".panel")[id]).offset().top
     time = Math.abs(dest-from)/3 + 100
     $("body,html,document").animate(
       scrollTop: dest+10
-    , time)
+    , time, ->
+      Gakko.scrolling = false
+      Gakko.navColorShift()
+    )
+    true
   )
 
   # About page
