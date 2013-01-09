@@ -11,7 +11,7 @@ window.Gakko = Gakko = {
   expandedPaths: []
   outlines: []
   expandedOutlines: []            # The current window 'panel' being shown
-  index: 0
+  backIndex: 0
 
   # Functions
 
@@ -26,14 +26,14 @@ window.Gakko = Gakko = {
     top = $("body").scrollTop()
     num = Math.floor (((top-20)/panelHeight) + 1)
     if num <= 2
-      newIndex = Math.floor num/2 
+      newBackIndex = Math.floor num/2 
     else
-      newIndex = Math.floor (num+1)/2
-    if newIndex isnt @index
+      newBackIndex = Math.floor (num+1)/2
+    if newBackIndex isnt @backIndex
       $(".back").hide()
-      back = $(".back")[newIndex]
+      back = $(".back")[newBackIndex]
       $(back).show()
-      @index = newIndex
+      @backIndex = newBackIndex
 
   makePaths: (expand=false) ->
     # BOUND_SCALE is necessary because the circles aren't centered 
@@ -102,6 +102,15 @@ window.Gakko = Gakko = {
       paths: paths
       outlines: outlines
     }
+
+  colorNav: ->
+    origColor = "black"
+    origColor = "#513E37"
+    origOpacity = 0.3
+    newColor = "#B82025"
+    Gakko.pieces
+      .attr("fill", origColor)
+      .attr("fill-opacity", origOpacity)
 
   # Changes the placement and size of the nav-logo captions
   adjustCaptions: ->

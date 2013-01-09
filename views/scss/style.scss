@@ -1,28 +1,5 @@
 @import 'bourbon/bourbon';
 
-@font-face {
-  font-family: 'MyMyriad';
-  font-style: normal;
-  font-weight: 200;
-  src: local("MyMyriad"), 
-    url(/fonts/myriad/MyriadPro-LightSemiExt.otf) format("opentype");
-}
-
-@font-face {
-  font-family: 'MyMyriad';
-  font-style: normal;
-  font-weight: normal;
-  src: local("MyMyriad"), 
-    url(/fonts/myriad/MyriadPro-Regular.otf) format("opentype");
-}
-@font-face {
-  font-family: 'MyMyriad';
-  font-style: normal;
-  font-weight: bold;
-  src: local("MyMyriad"), 
-    url(/fonts/myriad/MyriadPro-Semibold.otf) format("opentype");
-}
-
 /* Global Variables */
 $font: 12px;
 $brown: #513E37;
@@ -100,8 +77,8 @@ a {
     color: $red;
     opacity: 1;
     $highlight: rgba(white, 0.5); 
-    background-color: $highlight;
-    @include box-shadow(0 0 5px 0 $highlight);
+    // background-color: $highlight;
+    // @include box-shadow(0 0 5px 0 $highlight);
   }
   @include transition(all 0.2s);
 }

@@ -26,6 +26,7 @@ $(document).ready ->
   Gakko.pieces
     .attr("fill", origColor)
     .attr("fill-opacity", origOpacity)
+  Gakko.colorNav()
   Gakko.setupNav()                   # The rest, which is also done in window.resize
   # Fade the logo in
   setTimeout( ->
