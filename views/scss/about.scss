@@ -62,6 +62,11 @@ $about-blue: #004D68;
 }
 
 $circle: 160px;
+.circle-text {
+  margin-top: $circle/4;
+  text-shadow: 0 1px 1px rgba(white, 0.25);
+}
+
 .circle {
   position: absolute;
   background-color: rgba($brown, 0.1);
@@ -71,9 +76,11 @@ $circle: 160px;
   padding: $circle/4;
   // Which makes width actually $circle * 1.5
   // text-align: center;
-  text-indent: 40px;
   cursor: pointer;
   z-index: 0;
+  .circle-text {
+    text-indent: 40px;
+  }
   &.camp {
     top: 10px;
     left: 0;
@@ -85,7 +92,10 @@ $circle: 160px;
   &.tank {
     top: $circle * 1;
     left: $circle * 0.75;
-    text-indent: 10px;
+    .circle-text {
+      text-indent: 10px;
+      margin-top: 50px;
+    }
   }
   &:hover {
     z-index: 1;
@@ -93,11 +103,6 @@ $circle: 160px;
       opacity: 1;
     }
   }
-}
-
-.circle-text {
-  margin-top: $circle/4;
-  text-shadow: 0 1px 1px rgba(white, 0.25);
 }
 
 $overlay: $circle * 0.9;
@@ -114,7 +119,6 @@ $overlayOffset: ($circle - $overlay) * 0.5;
   padding: $circle/4; 
   color: white;
   text-align: left;
-  text-indent: 0;
   background-color: rgba($about-blue, 1);
   z-index: 10;
   opacity: 0;
