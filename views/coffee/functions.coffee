@@ -26,14 +26,32 @@ window.Gakko = Gakko = {
     top = $("body").scrollTop()
     num = Math.floor (((top-20)/panelHeight) + 1)
     if num <= 2
-      newBackIndex = Math.floor num/2 
+      newIndex = Math.floor num/2 
     else
-      newBackIndex = Math.floor (num+1)/2
-    if newBackIndex isnt @backIndex
+      newIndex = Math.floor (num+1)/2
+    if newIndex isnt @backIndex
       $(".back").hide()
-      back = $(".back")[newBackIndex]
+      back = $(".back")[newIndex]
       $(back).show()
-      @backIndex = newBackIndex
+      @backIndex = newIndex
+
+  navColorShift: ->
+    panelHeight = $(".panel").height()
+    bottom = $("body").scrollTop() + $(window).height()
+    num = Math.floor(bottom/panelHeight)
+    if num%2 is 0
+      @origColor = "white"
+      @origOpacity = 0.7
+      $(".nav-caption").removeClass("dark")
+      console.log $(".nav-caption")
+    else
+      @origColor = "#513E37"
+      @origOpacity = 0.3
+      $(".nav-caption").addClass("dark")
+    @pieces
+      .attr("fill", @origColor)
+      .attr("fill-opacity", @origOpacity)
+    $(".nav-caption").addClass("dark")
 
   makePaths: (expand=false) ->
     # BOUND_SCALE is necessary because the circles aren't centered 
@@ -103,15 +121,6 @@ window.Gakko = Gakko = {
       outlines: outlines
     }
 
-  colorNav: ->
-    origColor = "black"
-    origColor = "#513E37"
-    origOpacity = 0.3
-    newColor = "#B82025"
-    Gakko.pieces
-      .attr("fill", origColor)
-      .attr("fill-opacity", origOpacity)
-
   # Changes the placement and size of the nav-logo captions
   adjustCaptions: ->
     radius = $("#nav-logo").width()+30            # 30 was picked as a padding
@@ -142,7 +151,7 @@ window.Gakko = Gakko = {
     Gakko.expandedOutlines = expandedResult.outlines
     for p, i in Gakko.pieces[0]
       d3.select(p).attr("d", Gakko.paths[i])
-    for o, i in Gakko.rings[0]
-      d3.select(o).attr("d", Gakko.outlines[i])
+    # for o, i in Gakko.rings[0]
+    #   d3.select(o).attr("d", Gakko.outlines[i])
     Gakko.adjustCaptions()
 }                  

@@ -80,7 +80,10 @@ a {
     // background-color: $highlight;
     // @include box-shadow(0 0 5px 0 $highlight);
   }
-  @include transition(all 0.2s);
+  &.dark {
+    color: $brown;
+  }
+  @include transition(color 0.2s);
 }
 
 /* Backgrounds */

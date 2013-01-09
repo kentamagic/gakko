@@ -18,15 +18,7 @@ $(document).ready ->
   for b, i in $(".back")
     $(b).smartbg("/images/backgrounds/#{bImages[i]}", 200) 
   Gakko.pieces = d3.selectAll(".nav-piece")
-  Gakko.rings = d3.selectAll(".nav-outline")
-  origColor = "black"
-  origColor = "#513E37"
-  origOpacity = 0.3
-  newColor = "#B82025"
-  Gakko.pieces
-    .attr("fill", origColor)
-    .attr("fill-opacity", origOpacity)
-  Gakko.colorNav()
+  # Gakko.rings = d3.selectAll(".nav-outline")
   Gakko.setupNav()                   # The rest, which is also done in window.resize
   # Fade the logo in
   setTimeout( ->
@@ -35,6 +27,7 @@ $(document).ready ->
   # Window events
   $(window).scroll(() ->
     Gakko.backShift()
+    Gakko.navColorShift()
   ).resize(() ->
     Gakko.setupNav()
   )
@@ -46,22 +39,22 @@ $(document).ready ->
       d3.select(p)
         .transition().duration(duration)
         .attr("d", Gakko.expandedPaths[i])
-    for o, i in Gakko.rings[0]
-      d3.select(o)
-        .transition().duration(duration)
-        .attr("d", Gakko.expandedOutlines[i])
+    # for o, i in Gakko.rings[0]
+    #   d3.select(o)
+    #     .transition().duration(duration)
+    #     .attr("d", Gakko.expandedOutlines[i])
   ).mouseleave(() ->
     $("#nav-captions").fadeOut("fast")
     for p, i in Gakko.pieces[0]
       d3.select(p)
         .transition().duration(duration)
         .attr("d", Gakko.paths[i])
-    for o, i in Gakko.rings[0]
-      d3.select(o)
-        .transition().duration(duration)
-        .attr("d", Gakko.outlines[i])
+    # for o, i in Gakko.rings[0]
+    #   d3.select(o)
+    #     .transition().duration(duration)
+    #     .attr("d", Gakko.outlines[i])
   )
-
+  newColor = "#B82025"
   Gakko.pieces.on("mouseover", ->
     d3.select(this)
       .attr("fill", newColor)
@@ -70,8 +63,8 @@ $(document).ready ->
     $("#cap-#{id}").addClass("highlight")
   ).on("mouseout", ->
     d3.select(this)
-      .attr("fill", origColor)
-      .attr("fill-opacity", origOpacity)
+      .attr("fill", Gakko.origColor)
+      .attr("fill-opacity", Gakko.origOpacity)
     id = d3.select(this).attr("target")
     $("#cap-#{id}").removeClass("highlight")
   )
