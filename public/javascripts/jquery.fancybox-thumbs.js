@@ -144,19 +144,17 @@
 			if (this.list) {
 				this.list.stop(true).animate({
 					'left': Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
-				}, 150);
+				}, 500);
 			}
 		},
-
 		beforeClose: function () {
 			if (this.wrap) {
 				this.wrap.remove();
 			}
-
 			this.wrap  = null;
 			this.list  = null;
 			this.width = 0;
 		}
-	}
+	};
 
 }(jQuery));

@@ -11,7 +11,7 @@ $(document).ready ->
   # Setup
   bImages = [
     "background2000.jpg",
-    "about2000.jpg",
+    "group2000.jpg",
     "connect_small.jpg",
     "background2000.jpg",
   ]
@@ -24,13 +24,14 @@ $(document).ready ->
   setTimeout( ->
     $(".logo").toggleClass "hidden"
   , 500)
-  # Window events
-  $(window).scroll(() ->
+  # Window events -- make sure to change in Gakko.setupFancybox too!
+  $(window).scroll(->
     Gakko.backShift()
     Gakko.navColorShift()
-  ).resize(() ->
+  ).resize(->
     Gakko.setupNav()
   )
+  $(window).scroll()
   # Navigation animation 
   duration = 200
   $("#nav-logo").mouseenter(() ->
@@ -55,7 +56,7 @@ $(document).ready ->
     #     .attr("d", Gakko.outlines[i])
   )
   newColor = "#B82025"
-  Gakko.pieces.on("mouseover", ->
+  Gakko.pieces.on("mousemove", ->
     d3.select(this)
       .attr("fill", newColor)
       .attr("fill-opacity", 1)
@@ -92,17 +93,13 @@ $(document).ready ->
 
   # 2012 page
 
-  $(".fancybox-thumb").fancybox(
-    prevEffect: 'none'
-    nextEffect: 'none'
-    padding: 0
-    margin: 0
-    maxWidth: "90%"
-    maxHeight: "90%"
-    helpers:
-      title:
-        type: 'over'
-      thumbs: 
-        width: 50
-        height: 50
-  )
+  # $(".twelve-link").click ->
+  #   if not $(this).hasClass "selected"
+  #     $(".twelve-link.selected").removeClass "selected"
+  #     $(this).addClass "selected"
+  for a, i in $("a.fancybox-thumb:not(.hide)")
+    Gakko.linkDests[i] = $(a).attr "href"
+  $("#fancy-overlay").click ->
+    $.fancybox.close()
+    $(this).hide()
+  Gakko.setupFancybox()

@@ -12,6 +12,8 @@ window.Gakko = Gakko = {
   outlines: []
   expandedOutlines: []            # The current window 'panel' being shown
   backIndex: 0
+  linkDests: {}                   # Destination containers for fancybox nav links
+  linkIndexes: [0, 6, 18, 36]     # Indexes for jumping to in fancybox
 
   # Functions
 
@@ -25,10 +27,10 @@ window.Gakko = Gakko = {
     panelHeight = $(".panel").height()
     top = $("body").scrollTop()
     num = Math.floor (((top-20)/panelHeight) + 1)
-    if num <= 2
-      newIndex = Math.floor num/2 
-    else
-      newIndex = Math.floor (num+1)/2
+    # if num <= 2
+    #   newIndex = Math.floor num/2 
+    # else
+    newIndex = Math.floor (num)/2
     if newIndex isnt @backIndex
       $(".back").hide()
       back = $(".back")[newIndex]
@@ -122,7 +124,8 @@ window.Gakko = Gakko = {
   # Changes the placement and size of the nav-logo captions
   adjustCaptions: ->
     radius = $("#nav-logo").width()+30            # 30 was picked as a padding
-    size = Gakko.map(radius, 120.0, 300.0, 10.0, 22.0)  # 120, 300 come from #nav-logo min and max-width.
+    # size: 120, 300 come from #nav-logo min and max-width.
+    size = Gakko.map(radius, 120.0, 300.0, 10.0, 22.0)  
     numFrames = Gakko.numFrames
     for num in [0...numFrames]
       step = Gakko.interval/numFrames
@@ -152,4 +155,55 @@ window.Gakko = Gakko = {
     # for o, i in Gakko.rings[0]
     #   d3.select(o).attr("d", Gakko.outlines[i])
     Gakko.adjustCaptions()
+
+  setupFancybox: ->
+    $(".fancybox-thumb").fancybox(
+      padding: 0
+      margin: 0#[100, 0, 100, 0]
+      maxWidth: "90%"
+      maxHeight: "85%"
+      topRatio: 1
+      beforeLoad: ->
+        this.title = $(this.element).attr "caption"
+        $("#fancy-overlay").show()
+        Gakko.makeFancyboxNav()
+        true
+      beforeShow: ->
+        $(".twelve-link").removeClass("selected")
+        links = Gakko.linkIndexes
+        l = links.length
+        for i in [l-1..0]
+          if $.fancybox.current.index >= links[i]
+            $($(".twelve-link")[i]).addClass("selected")
+            break
+        true
+      afterClose: -> 
+        $("#fancy-overlay").hide()
+        Gakko.removeFancyboxNav()
+        $(".twelve-link.selected").removeClass "selected"
+        true
+      helpers:
+        title:
+          type: 'over'
+        thumbs: 
+          width: 50
+          height: 50
+        overlay: null
+    )
+
+  makeFancyboxNav: ->
+    as = $("a.fancybox-thumb:not(.hide)")
+    for i in [0...@linkIndexes.length]
+      a = $(as)[i]
+      string = "javascript:jQuery.fancybox.jumpto(#{@linkIndexes[i]});"
+      $(a).attr "href", string
+    $(as).removeClass('fancybox-thumb').addClass('fancybox-thumb-inactive')
+
+  removeFancyboxNav: ->
+    as = $("a.fancybox-thumb-inactive:not(.hide)")
+    for i in [0...@linkIndexes.length]
+      a = $(as)[i]
+      $(a).attr "href", @linkDests[i]
+    $(as).removeClass('fancybox-thumb-inactive').addClass('fancybox-thumb')
+    @setupFancybox()
 }                  
