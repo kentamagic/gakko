@@ -157,6 +157,53 @@ window.Gakko = Gakko = {
     #   d3.select(o).attr("d", Gakko.outlines[i])
     Gakko.adjustCaptions()
 
+  setNavEventHandlers: ->
+    # Navigation animation 
+    duration = 200
+    $("#nav-logo").mouseenter( ->
+      $("#nav-captions").fadeIn("fast")
+      for p, i in Gakko.pieces[0]
+        d3.select(p)
+          .transition().duration(duration)
+          .attr("d", Gakko.expandedPaths[i])
+    ).mouseleave( ->
+      $("#nav-captions").fadeOut("fast")
+      for p, i in Gakko.pieces[0]
+        d3.select(p)
+          .transition().duration(duration)
+          .attr("d", Gakko.paths[i])
+    )
+    newColor = "#B82025"
+    Gakko.pieces.on("mousemove", ->
+      d3.select(this)
+        .attr("fill", newColor)
+        .attr("fill-opacity", 1)
+      id = d3.select(this).attr("target")
+      $("#cap-#{id}").addClass("highlight")
+    ).on("mouseout", ->
+      d3.select(this)
+        .attr("fill", Gakko.origColor)
+        .attr("fill-opacity", Gakko.origOpacity)
+      id = d3.select(this).attr("target")
+      $("#cap-#{id}").removeClass("highlight")
+    )
+    # Navigation click
+    $(".js-nav").click ->
+      Gakko.scrolling = true
+      id = parseInt(d3.select(this).attr("target"))
+      # Manually setting id because 2013 page has two parts
+      id = 6 if id is 5 
+      from = $("body").scrollTop()
+      dest = $($(".panel")[id]).offset().top
+      # Time depends on distance (so speed is constant)
+      time = Math.abs(dest-from)/3 + 100
+      $("body,html,document").animate
+        scrollTop: dest+10
+      , time, ->
+        Gakko.scrolling = false
+        Gakko.navColorShift()
+      true
+
   setupFancybox: ->
     $(".fancybox-thumb").fancybox(
       padding: 0
@@ -169,9 +216,7 @@ window.Gakko = Gakko = {
         $("#fancy-overlay").show()
         $("#nav-container").hide()
         Gakko.makeFancyboxNav()
-        $("body").data("overflow", $("body").css "overflow")
         $("body").css "overflow", "hidden"
-
         true
       beforeShow: ->
         $(".twelve-link").removeClass("selected")
@@ -187,7 +232,7 @@ window.Gakko = Gakko = {
         Gakko.removeFancyboxNav()
         $("#nav-container").show()
         $(".twelve-link.selected").removeClass "selected"
-        $("body").css("overflow", $("body").data "overflow")
+        $("body").css "overflow", "visible"
         true
       helpers:
         title:
