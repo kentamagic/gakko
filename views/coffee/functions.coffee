@@ -167,7 +167,11 @@ window.Gakko = Gakko = {
       beforeLoad: ->
         this.title = $(this.element).attr "caption"
         $("#fancy-overlay").show()
+        $("#nav-container").hide()
         Gakko.makeFancyboxNav()
+        $("body").data("overflow", $("body").css "overflow")
+        $("body").css "overflow", "hidden"
+
         true
       beforeShow: ->
         $(".twelve-link").removeClass("selected")
@@ -181,7 +185,9 @@ window.Gakko = Gakko = {
       afterClose: -> 
         $("#fancy-overlay").hide()
         Gakko.removeFancyboxNav()
+        $("#nav-container").show()
         $(".twelve-link.selected").removeClass "selected"
+        $("body").css("overflow", $("body").data "overflow")
         true
       helpers:
         title:
