@@ -35,8 +35,9 @@ $f-size: 50px;
 }
 
 .fancybox-close {
-  top: 0;
-  right: -1*$f-size - 5px;
+  position: fixed;
+  top: 40px;
+  right: 5%;
   opacity: 0.5;
   background-image: url(/images/icons/fancybox-close.png);
   background-size: contain;

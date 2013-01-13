@@ -30,6 +30,7 @@ $(document).ready ->
     Gakko.navColorShift() if not Gakko.scrolling
   ).resize(->
     Gakko.setupNav()
+    $.fancybox.close()
   )
   $(window).scroll()
   # Navigation animation 
