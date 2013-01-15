@@ -207,7 +207,7 @@ window.Gakko = Gakko = {
   setupFancybox: ->
     $(".fancybox-thumb").fancybox(
       padding: 0
-      margin: 0#[100, 0, 100, 0]
+      margin: 0
       maxWidth: "90%"
       maxHeight: "85%"
       topRatio: 1
